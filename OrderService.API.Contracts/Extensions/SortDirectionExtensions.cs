@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace OrderService.API.Contracts.Extensions
 {
@@ -18,7 +16,7 @@ namespace OrderService.API.Contracts.Extensions
             if (string.Equals(sortDirection, Descending, StringComparison.InvariantCultureIgnoreCase))
                 return ListSortDirection.Descending;
 
-            throw new Exception;
+            throw new Exception();
         }
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,6 +8,16 @@
     <PackageReference Include="FluentValidation" Version="9.5.3" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderService.API.Contracts\OrderService.API.Contracts.csproj" />
+    <ProjectReference Include="..\OrderService.Data.Domain\OrderService.Data.Domain.csproj" />
+    <ProjectReference Include="..\OrderService.Data.Services\OrderService.Data.Services.csproj" />
   </ItemGroup>
 
 </Project>

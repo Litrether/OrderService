@@ -9,7 +9,7 @@ namespace OrderService.Data.Domain.Models
         Delivered,
     }
 
-    public class Order: KeyedEntityBase
+    public class Order : KeyedEntityBase
     {
         public OrderStatus Status { get; set; }
 

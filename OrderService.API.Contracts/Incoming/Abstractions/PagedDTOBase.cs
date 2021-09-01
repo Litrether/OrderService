@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OrderService.API.Contracts.Extensions;
 using System.ComponentModel;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace OrderService.API.Contracts.Incoming.Abstractions
 {
-    public class PagedDTOBase
+    public class PagedDTOBase : PageSettings
     {
         [JsonIgnore]
         public ListSortDirection ListSortDirection => SortDirection.ToListSortDirection();

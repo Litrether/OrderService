@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OrderService.API.Contracts.Incoming.Abstractions
+﻿namespace OrderService.API.Contracts.Incoming.Abstractions
 {
     public class PageSettings
     {

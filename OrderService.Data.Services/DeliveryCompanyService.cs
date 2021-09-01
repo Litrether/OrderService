@@ -11,22 +11,22 @@ using System.Threading.Tasks;
 
 namespace OrderService.Data.Services
 {
-    public interface IOrderService : IBaseService<Order>
+    public interface IDeliveryCompanyService : IBaseService<DeliveryCompany>
     {
-        Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
+        Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
         Task<int> CountAsync(OrderSearchCondition searchCondition);
         Task<bool> ExistsAsync(int id);
     }
 
-    public class OrderService : BaseService<Order>, IOrderService
+    public class DeliveryCompanyService : BaseService<Order>, IOrderService
     {
         private readonly OrderServiceDbContext dbContext;
 
-        public OrderService(OrderServiceDbContext dbContext) : base(dbContext) =>
+        public DeliveryCompanyService(OrderServiceDbContext dbContext) : base(dbContext) =>
             this.dbContext = dbContext;
 
         public Task<bool> ExistsAsync(int id) =>
-            dbContext.Orders.AnyAsync(entity => entity.Id == id);
+            dbContext.DeliveryCompanies.AnyAsync(entity => entity.Id == id);
 
         public async Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty)
         {
@@ -50,7 +50,7 @@ namespace OrderService.Data.Services
         {
             IQueryable<Order> query = dbContext.Orders;
 
-            //todo searchConditions orders
+            //todo searchConditions delivery
 
             return query;
         }

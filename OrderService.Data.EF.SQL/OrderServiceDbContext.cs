@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrderService.Data.Domain.Models;
-using System;
 
 namespace OrderService.Data.EF.SQL
 {
     public class OrderServiceDbContext : DbContext
     {
         public DbSet<Order> Orders { get; set; }
-        public DbSet<DeliveryCompany> DeliveryCompany { get; set; }
+        public DbSet<DeliveryCompany> DeliveryCompanies { get; set; }
 
         public OrderServiceDbContext(DbContextOptions<OrderServiceDbContext> options)
             : base(options)

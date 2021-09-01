@@ -1,6 +1,6 @@
-﻿namespace OrderService.Data.Domain.Models
+﻿namespace OrderService.API.Contracts.IncomingOutgoing
 {
-    public class DeliveryCompany : KeyedEntityBase
+    public class DeliveryCompanyDTO
     {
         public string Name { get; set; }
 

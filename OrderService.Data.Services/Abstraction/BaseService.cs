@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrderService.Data.EF.SQL;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,7 +22,7 @@ namespace OrderService.Data.Services.Abstraction
 
         protected BaseService(OrderServiceDbContext dbContext)
         {
-            //this.dbContext = dbContext;
+            this.dbContext = dbContext;
             dbSet = dbContext.Set<TEntity>();
         }
 
@@ -57,7 +56,7 @@ namespace OrderService.Data.Services.Abstraction
         public async Task DeleteAsync(int id)
         {
             var entity = await GetAsync(id);
-            if(entity != null)
+            if (entity != null)
             {
                 dbSet.Remove(entity);
             }
