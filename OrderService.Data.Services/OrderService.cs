@@ -1,5 +1,6 @@
 ﻿using OrderService.API.Contracts;
 using OrderService.Data.Domain.Models;
+using OrderService.Data.EF.SQL;
 using OrderService.Data.Services.Abstraction;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,51 +9,52 @@ using System.Threading.Tasks;
 
 namespace OrderService.Data.Services
 {
-    //public interface IOrderService : IBaseService<Order>
-    //{
-    //    Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
-    //    Task<int> CountAsync(OrderSearchCondition searchCondition);
-    //    Task<bool> ExistsAsync(int id);
-    //}
+    public interface IOrderService : IBaseService<Order>
+    {
+        Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
+        Task<int> CountAsync(OrderSearchCondition searchCondition);
+        Task<bool> ExistsAsync(int id);
+    }
 
-    //public class OrderService : BaseService<Order>, IOrderService
-    //{
-    //    private readonly OrderServiceDbContext dbContext;
+    public class OrderService : BaseService<Order>, IOrderService
+    {
+        private readonly OrderServiceDbContext dbContext;
 
-    //    public OrderService(OrderServiceDbContext dbContext) : base(dbContext) =>
-    //        this.dbContext = dbContext;
+        public OrderService(OrderServiceDbContext dbContext) : base(dbContext) =>
+            this.dbContext = dbContext;
 
-    //    public Task<bool> ExistsAsync(int id) =>
-    //        dbContext.Order.AnyAsync(entity => entity.id);
+        public Task<bool> ExistsAsync(int id) =>
+            dbContext.Order.AnyAsync(entity => entity.id);
 
-    //    public Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty)
-    //    {
-    //        IQueryable<Order> query = BuildFindQuery(searchCondition);
+        public async Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty)
+        {
+            IQueryable<Order> query = BuildFindQuery(searchCondition);
 
-    //        query = searchCondition.ListSortDirection == ListSortDirection.Ascending
-    //            ? query.OrderBy(sortProperty)
-    //            : query.OrderByDescending(sortProperty);
 
-    //        return await query.Page(searchCondition.)
-    //    }
+            query = searchCondition.ListSortDirection == ListSortDirection.Ascending
+                ? query.OrderBy(sortProperty)
+                : query.OrderByDescending(sortProperty);
 
-    //    public Task<int> CountAsync(OrderSearchCondition searchCondition)
-    //    {
-    //    }
+            return await query.Page(searchCondition.)
+        }
 
-    //    private IQueryable<Order> BuildFindQuery(OrderSearchCondition searchCondition)
-    //    {
-    //        IQueryable<Order> query = dbContext.Orders;
+        public Task<int> CountAsync(OrderSearchCondition searchCondition)
+        {
+        }
 
-    //        if (searchCondition.Name.Any())
-    //            foreach (var name in searchCondition.Name)
-    //            {
-    //                var upperName = name.ToUpper().Trim();
-    //                query = query.Where(x =>
-    //                x.Name != null && x.Name.ToUpper().Contains(upperName));
-    //            }
+        private IQueryable<Order> BuildFindQuery(OrderSearchCondition searchCondition)
+        {
+            IQueryable<Order> query = dbContext.Orders;
 
-    //        return query;
-    //    }
-    //}
+            if (searchCondition.Name.Any())
+                foreach (var name in searchCondition.Name)
+                {
+                    var upperName = name.ToUpper().Trim();
+                    query = query.Where(x =>
+                    x.Name != null && x.Name.ToUpper().Contains(upperName));
+                }
+
+            return query;
+        }
+    }
 }

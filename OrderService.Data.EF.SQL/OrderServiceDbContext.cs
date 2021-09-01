@@ -7,7 +7,8 @@ namespace OrderService.Data.EF.SQL
     public class OrderServiceDbContext : DbContext
     {
         public DbSet<Order> Orders { get; set; }
-     
+        public DbSet<DeliveryCompany> DeliveryCompany { get; set; }
+
         public OrderServiceDbContext(DbContextOptions<OrderServiceDbContext> options)
             : base(options)
         { }
