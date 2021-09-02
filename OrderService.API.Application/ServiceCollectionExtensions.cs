@@ -31,7 +31,7 @@ namespace OrderService.API.Application
 
                     x.FromAssemblies(assemblies)
                         .AddClasses(classes => classes.AssignableTo(typeof(IValidator<>)))
-                        .AsImpementedInterfaces()
+                        .AsImplementedInterfaces()
                         .WithScopedLifetime();
                 });
 

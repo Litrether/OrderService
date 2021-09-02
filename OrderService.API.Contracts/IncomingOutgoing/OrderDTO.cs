@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace OrderService.Data.Domain.Models
+namespace OrderService.API.Contracts.IncomingOutgoing
 {
-  
-
-    public class Order : KeyedEntityBase
+    public class OrderDTO
     {
         public string Status { get; set; }
 
@@ -14,11 +14,10 @@ namespace OrderService.Data.Domain.Models
 
         public int ProductId { get; set; }
 
+        public int DeliveryCompanyId { get; set; }
+
         public DateTime OrderedAt { get; set; }
 
         public DateTime DeliveredAt { get; set; }
-
-        public int DeliveryCompanyId { get; set; }
-        public DeliveryCompany DeliveryCompany { get; set; }
     }
 }

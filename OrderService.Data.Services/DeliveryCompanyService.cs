@@ -7,6 +7,7 @@ using OrderService.Data.Services.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OrderService.Data.Services
@@ -15,7 +16,7 @@ namespace OrderService.Data.Services
     {
         Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
         Task<int> CountAsync(OrderSearchCondition searchCondition);
-        Task<bool> ExistsAsync(int id);
+        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
     }
 
     public class DeliveryCompanyService : BaseService<Order>, IOrderService
@@ -25,8 +26,8 @@ namespace OrderService.Data.Services
         public DeliveryCompanyService(OrderServiceDbContext dbContext) : base(dbContext) =>
             this.dbContext = dbContext;
 
-        public Task<bool> ExistsAsync(int id) =>
-            dbContext.DeliveryCompanies.AnyAsync(entity => entity.Id == id);
+        public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>
+            dbContext.DeliveryCompanies.AnyAsync(entity => entity.Id == id, cancellationToken);
 
         public async Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty)
         {

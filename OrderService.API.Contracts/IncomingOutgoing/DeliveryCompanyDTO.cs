@@ -3,7 +3,7 @@
     public class DeliveryCompanyDTO
     {
         public string Name { get; set; }
-
+        
         public double Rating { get; set; }
     }
 }
