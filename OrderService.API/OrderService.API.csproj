@@ -17,5 +17,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OrderService.API.Application\OrderService.API.Application.csproj" />
+  </ItemGroup>
+
 
 </Project>

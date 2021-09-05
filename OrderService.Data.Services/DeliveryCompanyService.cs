@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrderService.API.Contracts;
+using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.EF.SQL;
 using OrderService.Data.Services.Abstraction;
@@ -14,12 +15,12 @@ namespace OrderService.Data.Services
 {
     public interface IDeliveryCompanyService : IBaseService<DeliveryCompany>
     {
-        Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
-        Task<int> CountAsync(OrderSearchCondition searchCondition);
+        Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty);
+        Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition);
         Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
     }
 
-    public class DeliveryCompanyService : BaseService<Order>, IOrderService
+    public class DeliveryCompanyService : BaseService<DeliveryCompany>, IDeliveryCompanyService
     {
         private readonly OrderServiceDbContext dbContext;
 
@@ -29,9 +30,9 @@ namespace OrderService.Data.Services
         public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>
             dbContext.DeliveryCompanies.AnyAsync(entity => entity.Id == id, cancellationToken);
 
-        public async Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty)
+        public async Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty)
         {
-            IQueryable<Order> query = BuildFindQuery(searchCondition);
+            IQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
 
             query = searchCondition.ListSortDirection == ListSortDirection.Ascending
                 ? query.OrderBy(sortProperty)
@@ -40,16 +41,16 @@ namespace OrderService.Data.Services
             return await query.Page(searchCondition.Page, searchCondition.PageSize).ToListAsync();
         }
 
-        public async Task<int> CountAsync(OrderSearchCondition searchCondition)
+        public async Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition)
         {
-            IQueryable<Order> query = BuildFindQuery(searchCondition);
+            IQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
 
             return await query.CountAsync();
         }
 
-        private IQueryable<Order> BuildFindQuery(OrderSearchCondition searchCondition)
+        private IQueryable<DeliveryCompany> BuildFindQuery(DeliveryCompanySearchCondition searchCondition)
         {
-            IQueryable<Order> query = dbContext.Orders;
+            IQueryable<DeliveryCompany> query = dbContext.DeliveryCompanies;
 
             //todo searchConditions delivery
 
