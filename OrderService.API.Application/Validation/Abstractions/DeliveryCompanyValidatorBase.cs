@@ -16,15 +16,15 @@ namespace OrderService.API.Application.Validation.Abstractions
         {
             RuleFor(cmd => cmd.Entity)
                 .NotNull()
-                .WithMessage(cmd => string.Format("Value required"));
+                .WithMessage(cmd => string.Format(Resources.Resources.ValueRequired, nameof(cmd.Entity)));
 
             RuleFor(cmd => cmd.Entity.Name)
                 .Must(NotBeNullOrWhitespace)
-                .WithMessage("Delivery company name is requred");
+                .WithMessage(Resources.Resources.DeliveryCompanyNameRequired);
 
             RuleFor(cmd => cmd.Entity.Rating)
                 .Must(NotBeLessThanNull)
-                .WithMessage("Delivery company name is requred");
+                .WithMessage(Resources.Resources.DeliveryCompanyRatingNotBeLessThanNull);
         }
 
         private bool NotBeNullOrWhitespace(string value) =>

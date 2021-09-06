@@ -24,13 +24,13 @@ namespace OrderService.API.Application.Validation.DeliveryCompany
 
         private void CreateRules()
         {
-            RuleFor(query => query.Id)
+            RuleFor(cmd => cmd.Id)
                .NotNull()
-               .WithMessage(query => "Value required");
+               .WithMessage(cmd => string.Format(Resources.Resources.ValueRequired, nameof(cmd.Id)));
 
-            RuleFor(query => query.Id)
+            RuleFor(cmd => cmd.Id)
                 .MustAsync(Exist)
-                .WithMessage(query => "Value required");
+                .WithMessage(cmd => string.Format(Resources.Resources.DeliveryCompanyNotFound, cmd.Id));
         }
 
         private async Task<bool> Exist(int? id, CancellationToken cancellationToken) =>

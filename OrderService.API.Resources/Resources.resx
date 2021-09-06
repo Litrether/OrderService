@@ -141,11 +141,14 @@
   <data name="OrderCostNotBeLessThanNull" xml:space="preserve">
     <value>A order cost not be less than null.</value>
   </data>
+  <data name="OrderNotFound" xml:space="preserve">
+    <value>The order with id '{0}' was not found.</value>
+  </data>
   <data name="OrderOrderedAtRequired" xml:space="preserve">
     <value>A ordered date required.</value>
   </data>
-  <data name="OrderStatusInvalidStatus" xml:space="preserve">
-    <value>A order The status must have one of three values: "Processed" or "On the way", "Delivered"</value>
+  <data name="OrderStatusInvalid" xml:space="preserve">
+    <value>A order status must have one of three values: "Processed" or "On the way", "Delivered"</value>
   </data>
   <data name="OrderStatusRequired" xml:space="preserve">
     <value>A order status required.</value>

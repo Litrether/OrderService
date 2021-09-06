@@ -24,11 +24,11 @@ namespace OrderService.API.Application.Validation.OrderCommands
         {
             RuleFor(cmd => cmd.Id)
                 .NotNull()
-                .WithMessage(cmd => "");
+                .WithMessage(cmd => string.Format(Resources.Resources.ValueRequired, nameof(cmd.Id)));
 
             RuleFor(cmd => cmd.Id)
                 .MustAsync(Exist)
-                .WithMessage(cmd => "");
+                .WithMessage(cmd => string.Format(Resources.Resources.OrderNotFound, nameof(cmd.Id)));
         }
 
         private async Task<bool> Exist(int? id, CancellationToken cancellationToken) =>
