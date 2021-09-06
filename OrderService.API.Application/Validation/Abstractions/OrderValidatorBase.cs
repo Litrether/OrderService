@@ -23,25 +23,25 @@ namespace OrderService.API.Application.Validation.Abstractions
         {
             RuleFor(cmd => cmd.Entity)
                .NotNull()
-               .WithMessage(cmd => string.Format(Resources.Resources.ValueRequired, nameof(cmd.Entity)));
+               .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.Status)
                 .Must(NotBeNullOrWhitespace)
-                .WithMessage(cmd => Resources.Resources.OrderStatusRequired)
+                .WithMessage(cmd => "")
                 .Must(HasValidStatus)
-                .WithMessage(cmd => Resources.Resources.OrderStatusInvalid);
+                .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.Cost)
                 .Must(NotBeLessThanNull)
-                .WithMessage(cmd => Resources.Resources.OrderCostNotBeLessThanNull);
+                .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.OrderedAt)
                 .NotNull()
-                .WithMessage(cmd => Resources.Resources.OrderOrderedAtRequired);
+                .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.DeliveryCompanyId)
                 .MustAsync(ExistDeliveryCompany)
-                .WithMessage(cmd => Resources.Resources.DeliveryCompanyNotFound);
+                .WithMessage(cmd => "");
         }
 
         private bool NotBeNullOrWhitespace(string value) =>

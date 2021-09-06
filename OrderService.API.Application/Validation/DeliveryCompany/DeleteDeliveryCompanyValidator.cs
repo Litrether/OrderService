@@ -24,7 +24,7 @@ namespace OrderService.API.Application.Validation.DeliveryCompany
         {
             RuleFor(cmd => cmd.Id)
                 .MustAsync(Exist)
-                .WithMessage(cmd => string.Format(Resources.Resources.DeliveryCompanyNotFound, cmd.Id));
+                .WithMessage(cmd => "Entity must exists");
         }
 
         private async Task<bool> Exist(int id, CancellationToken cancellationToken) =>

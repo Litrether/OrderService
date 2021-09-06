@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderService.API.Contracts\OrderService.API.Contracts.csproj" />
-    <ProjectReference Include="..\OrderService.API.Resources\OrderService.API.Resources.csproj" />
     <ProjectReference Include="..\OrderService.Data.Domain\OrderService.Data.Domain.csproj" />
     <ProjectReference Include="..\OrderService.Data.Services\OrderService.Data.Services.csproj" />
   </ItemGroup>

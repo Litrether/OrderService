@@ -24,11 +24,11 @@ namespace OrderService.API.Application.Validation.DeliveryCompany
         {
             RuleFor(query => query.Id)
                 .NotNull()
-                .WithMessage(query => string.Format(Resources.Resources.ValueRequired, nameof(query.Id)));
+                .WithMessage(query => "Value required");
 
             RuleFor(query => query.Id)
                 .MustAsync(Exist)
-                .WithMessage(query => Resources.Resources.DeliveryCompanyNotFound);
+                .WithMessage(query => "Value required");
         }
 
         private async Task<bool> Exist(int id, CancellationToken cancellationToken) =>

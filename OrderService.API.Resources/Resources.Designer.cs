@@ -22,7 +22,7 @@ namespace OrderService.API.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace OrderService.API.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OrderService.API.Resources.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace OrderService.API.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to A book year not be less than null..
         /// </summary>
-        public static string BookYearNotBeLessThanNull {
+        internal static string BookYearNotBeLessThanNull {
             get {
                 return ResourceManager.GetString("BookYearNotBeLessThanNull", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to An delivery company name required..
         /// </summary>
-        public static string DeliveryCompanyNameRequired {
+        internal static string DeliveryCompanyNameRequired {
             get {
                 return ResourceManager.GetString("DeliveryCompanyNameRequired", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The delivery company with id &apos;{0}&apos; was not found..
         /// </summary>
-        public static string DeliveryCompanyNotFound {
+        internal static string DeliveryCompanyNotFound {
             get {
                 return ResourceManager.GetString("DeliveryCompanyNotFound", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to A delivery company rating not be less than null..
         /// </summary>
-        public static string DeliveryCompanyRatingNotBeLessThanNull {
+        internal static string DeliveryCompanyRatingNotBeLessThanNull {
             get {
                 return ResourceManager.GetString("DeliveryCompanyRatingNotBeLessThanNull", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing your request..
         /// </summary>
-        public static string ErrorProcessingRequest {
+        internal static string ErrorProcessingRequest {
             get {
                 return ResourceManager.GetString("ErrorProcessingRequest", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Insufficient or invalid data was provided for this request..
         /// </summary>
-        public static string InvalidDataProvided {
+        internal static string InvalidDataProvided {
             get {
                 return ResourceManager.GetString("InvalidDataProvided", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid sort direction. Valid values are &apos;asc&apos; or &apos;desc&apos;..
         /// </summary>
-        public static string InvalidSortDirection {
+        internal static string InvalidSortDirection {
             get {
                 return ResourceManager.GetString("InvalidSortDirection", resourceCulture);
             }
@@ -126,43 +126,34 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to A order cost not be less than null..
         /// </summary>
-        public static string OrderCostNotBeLessThanNull {
+        internal static string OrderCostNotBeLessThanNull {
             get {
                 return ResourceManager.GetString("OrderCostNotBeLessThanNull", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The order with id &apos;{0}&apos; was not found..
-        /// </summary>
-        public static string OrderNotFound {
-            get {
-                return ResourceManager.GetString("OrderNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A ordered date required..
         /// </summary>
-        public static string OrderOrderedAtRequired {
+        internal static string OrderOrderedAtRequired {
             get {
                 return ResourceManager.GetString("OrderOrderedAtRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A order status must have one of three values: &quot;Processed&quot; or &quot;On the way&quot;, &quot;Delivered&quot;.
+        ///   Looks up a localized string similar to A order The status must have one of three values: &quot;Processed&quot; or &quot;On the way&quot;, &quot;Delivered&quot;.
         /// </summary>
-        public static string OrderStatusInvalid {
+        internal static string OrderStatusInvalidStatus {
             get {
-                return ResourceManager.GetString("OrderStatusInvalid", resourceCulture);
+                return ResourceManager.GetString("OrderStatusInvalidStatus", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to A order status required..
         /// </summary>
-        public static string OrderStatusRequired {
+        internal static string OrderStatusRequired {
             get {
                 return ResourceManager.GetString("OrderStatusRequired", resourceCulture);
             }
@@ -171,7 +162,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The requested resource was not found..
         /// </summary>
-        public static string ResourceNotFound {
+        internal static string ResourceNotFound {
             get {
                 return ResourceManager.GetString("ResourceNotFound", resourceCulture);
             }
@@ -180,7 +171,7 @@ namespace OrderService.API.Resources {
         /// <summary>
         ///   Looks up a localized string similar to A &apos;{0}&apos; is required..
         /// </summary>
-        public static string ValueRequired {
+        internal static string ValueRequired {
             get {
                 return ResourceManager.GetString("ValueRequired", resourceCulture);
             }

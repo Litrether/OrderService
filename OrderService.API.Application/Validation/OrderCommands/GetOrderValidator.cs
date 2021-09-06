@@ -21,11 +21,11 @@ namespace OrderService.API.Application.Validation.OrderCommands
         {
             RuleFor(query => query.Id)
                 .NotNull()
-                .WithMessage(query => string.Format(Resources.Resources.ValueRequired, nameof(query.Id)));
+                .WithMessage(query => "asd");
 
             RuleFor(query => query.Id)
                 .MustAsync(Exist)
-                .WithMessage(query => string.Format(Resources.Resources.OrderNotFound, query.Id));
+                .WithMessage(query => "");
         }
 
         private async Task<bool> Exist(int id, CancellationToken cancellationToken) =>
