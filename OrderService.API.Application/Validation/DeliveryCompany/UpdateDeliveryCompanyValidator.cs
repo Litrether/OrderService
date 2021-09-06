@@ -3,9 +3,6 @@ using OrderService.API.Application.Commands.DeliveryCompanyCommands;
 using OrderService.API.Application.Validation.Abstractions;
 using OrderService.API.Contracts.Outgoing.Abstractions;
 using OrderService.Data.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

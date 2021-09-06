@@ -23,7 +23,8 @@ namespace OrderService.API.Application
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.Scan(
-                x => {
+                x =>
+                {
                     var entryAssembly = Assembly.GetEntryAssembly();
                     IEnumerable<Assembly> referencedAssemblies = entryAssembly.GetReferencedAssemblies().Select(Assembly.Load);
                     IEnumerable<Assembly> assemblies = new List<Assembly> { entryAssembly }.Concat(referencedAssemblies);

@@ -1,8 +1,4 @@
-﻿using OrderService.API.Contracts.Extensions;
-using System.ComponentModel;
-using System.Text.Json.Serialization;
-
-namespace OrderService.API.Contracts.Incoming.Abstractions
+﻿namespace OrderService.API.Contracts.Incoming.Abstractions
 {
     public class PagedDTOBase : PageSettings
     {

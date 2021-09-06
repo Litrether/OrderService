@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OrderService.Data.Domain.Models
 {
@@ -12,7 +10,7 @@ namespace OrderService.Data.Domain.Models
 
         public string Username { get; set; }
 
-        public string Product{ get; set; }
+        public string Product { get; set; }
 
         public DateTime OrderedAt { get; set; }
 

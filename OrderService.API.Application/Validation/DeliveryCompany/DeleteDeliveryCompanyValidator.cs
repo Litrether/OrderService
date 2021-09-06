@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
 using OrderService.API.Application.Commands.DeliveryCompanyCommands;
 using OrderService.Data.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

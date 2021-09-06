@@ -4,7 +4,6 @@ using OrderService.Data.Domain.Models;
 using OrderService.Data.EF.SQL;
 using OrderService.Data.Services.Abstraction;
 using OrderService.Data.Services.Extensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using OrderService.API.Application.Abstractions;
 using OrderService.API.Contracts;
-using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.API.Contracts.Outgoing;
 using OrderService.API.Contracts.Outgoing.Abstractions;
 using OrderService.Data.Domain.Models;

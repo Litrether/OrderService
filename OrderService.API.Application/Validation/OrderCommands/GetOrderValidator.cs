@@ -20,7 +20,7 @@ namespace OrderService.API.Application.Validation.OrderCommands
         private void CreateRules()
         {
             RuleFor(query => query.Id)
-                .NotNull()  
+                .NotNull()
                 .WithMessage(query => string.Format(Resources.Resources.ValueRequired, nameof(query.Id)));
 
             RuleFor(query => query.Id)
