@@ -1,10 +1,10 @@
-﻿using OrderService.Data.Domain.Models;
+﻿using MediatR;
 using OrderService.API.Application.Commands.Abstractions;
-using MediatR;
-using System.Threading.Tasks;
-using System.Threading;
-using OrderService.Data.Services;
 using OrderService.API.Contracts.IncomingOutgoing;
+using OrderService.Data.Domain.Models;
+using OrderService.Data.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 {

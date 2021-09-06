@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderService.API.Contracts;
 using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.EF.SQL;

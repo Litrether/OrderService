@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using OrderService.API.Contracts.Outgoing;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.Services;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
 {
@@ -19,7 +17,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
     }
 
     class GetAllDeliveryCompaniesQueryHandler : IRequestHandler<GetAllDeliveryCompanyQuery, IReadOnlyCollection<FoundDeliveryCompanyDTO>>
-        {
+    {
         private readonly IDeliveryCompanyService _deliveryCompanyService;
 
         public GetAllDeliveryCompaniesQueryHandler(IDeliveryCompanyService deliveryCompanyService)

@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OrderService.API.Application.Commands.DeliveryCompanyCommands;
 using OrderService.API.Application.Queries.DeliveryCompanyQueries;
 using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.API.Contracts.IncomingOutgoing;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OrderService.API.Controllers
 {

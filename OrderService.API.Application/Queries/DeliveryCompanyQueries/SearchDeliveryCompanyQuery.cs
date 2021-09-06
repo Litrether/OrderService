@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using OrderService.API.Application.Abstractions;
 using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.API.Contracts.Outgoing;
 using OrderService.API.Contracts.Outgoing.Abstractions;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
 {

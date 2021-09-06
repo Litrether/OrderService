@@ -1,11 +1,11 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Reflection;
-using FluentValidation;
-using OrderService.Data.Services.Extensions;
 using OrderService.API.Application.Validation.Abstractions;
+using OrderService.Data.Services.Extensions;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace OrderService.API.Application
 {

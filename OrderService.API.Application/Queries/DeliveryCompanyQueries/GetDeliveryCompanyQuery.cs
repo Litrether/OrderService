@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using OrderService.API.Contracts.IncomingOutgoing;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
 {

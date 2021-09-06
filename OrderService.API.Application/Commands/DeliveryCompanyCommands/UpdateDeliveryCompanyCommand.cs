@@ -4,7 +4,6 @@ using OrderService.API.Contracts.IncomingOutgoing;
 using OrderService.API.Contracts.Outgoing.Abstractions;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.Services;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OrderService.API.Contracts.Outgoing
 {
@@ -12,9 +10,9 @@ namespace OrderService.API.Contracts.Outgoing
 
         public string Username { get; set; }
 
-        public string Product{ get; set; }
+        public string Product { get; set; }
 
-        public int DeliveryCompany{ get; set; }
+        public int DeliveryCompany { get; set; }
 
         public DateTime OrderedAt { get; set; }
 

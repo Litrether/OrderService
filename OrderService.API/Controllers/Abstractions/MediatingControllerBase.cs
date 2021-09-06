@@ -1,9 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,7 +34,7 @@ namespace OrderService.API.Controllers
 
             TResult response = await _mediator.Send(query, cancellationToken);
 
-            if(response == null)
+            if (response == null)
             {
                 var actualNotFoundMessage = string.IsNullOrWhiteSpace(notFoundMessage)
                     ? string.Format("Not Found")
