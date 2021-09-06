@@ -15,7 +15,7 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
         public UpdateDeliveryCompanyCommand(DeliveryCompanyDTO deliveryCompany) : base(deliveryCompany) { }
     }
 
-    public class UpdateDeliveryCompanyCommandHandler : IRequestHandler<UpdateDeliveryCompanyCommand, Response>
+    class UpdateDeliveryCompanyCommandHandler : IRequestHandler<UpdateDeliveryCompanyCommand, Response>
     {
         private readonly IDeliveryCompanyService _deliveryCompanyService;
 

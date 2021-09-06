@@ -5,7 +5,7 @@ using OrderService.API.Contracts.IncomingOutgoing;
 namespace OrderService.API.Application.Validation.Abstractions
 {
     public class DeliveryCompanyValidatorBase<TCommand, TResponse> : AbstractValidator<TCommand>
-        where TCommand : BaseCommand<TResponse, DeliveryCompanyDTO>
+        where TCommand : BaseCommand<DeliveryCompanyDTO, TResponse>
     {
         public DeliveryCompanyValidatorBase()
         {
@@ -23,14 +23,14 @@ namespace OrderService.API.Application.Validation.Abstractions
                 .WithMessage("Delivery company name is requred");
 
             RuleFor(cmd => cmd.Entity.Rating)
-                .Must(NotBeNullOrWhitespace)
+                .Must(NotBeLessThanNull)
                 .WithMessage("Delivery company name is requred");
         }
 
         private bool NotBeNullOrWhitespace(string value) =>
             !string.IsNullOrWhiteSpace(value);
 
-        private bool NotBeLessThanNull(int value) =>
+        private bool NotBeLessThanNull(double value) =>
             value > 0;
     }
 }

@@ -13,7 +13,7 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
         public AddDeliveryCompanyCommand(DeliveryCompanyDTO deliveryCompany) : base(deliveryCompany) { }
     }
 
-    public class AddDeliveryCompanyCommandHandler : IRequestHandler<AddDeliveryCompanyCommand, int>
+    class AddDeliveryCompanyCommandHandler : IRequestHandler<AddDeliveryCompanyCommand, int>
     {
         private readonly IDeliveryCompanyService _deliveryCommandService;
 

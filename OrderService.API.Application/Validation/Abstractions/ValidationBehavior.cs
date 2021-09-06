@@ -27,9 +27,7 @@ namespace OrderService.API.Application.Validation.Abstractions
                 .ToList();
 
             if(failures.Count != 0)
-            {
                 throw new ValidationException(failures);
-            }
 
             return next();
         }

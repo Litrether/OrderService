@@ -19,7 +19,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
         { }
     }
 
-    public class SearchDeliveryCompanyQueryHandler : IRequestHandler<SearchDeliveryCompanyQuery, PagedResponse<FoundDeliveryCompanyDTO>>
+    class SearchDeliveryCompanyQueryHandler : IRequestHandler<SearchDeliveryCompanyQuery, PagedResponse<FoundDeliveryCompanyDTO>>
     {
         private readonly IDeliveryCompanyService _deliveryCompanyService;
 

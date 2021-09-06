@@ -18,7 +18,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
         }
     }
 
-    public class GetAllDeliveryCompaniesQueryHandler : IRequestHandler<GetAllDeliveryCompanyQuery, IReadOnlyCollection<FoundDeliveryCompanyDTO>>
+    class GetAllDeliveryCompaniesQueryHandler : IRequestHandler<GetAllDeliveryCompanyQuery, IReadOnlyCollection<FoundDeliveryCompanyDTO>>
         {
         private readonly IDeliveryCompanyService _deliveryCompanyService;
 
