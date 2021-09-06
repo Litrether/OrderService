@@ -2,7 +2,6 @@
 using OrderService.API.Application.Commands.Abstractions;
 using OrderService.API.Contracts.IncomingOutgoing;
 using OrderService.Data.Services;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,11 +37,11 @@ namespace OrderService.API.Application.Validation.Abstractions
                 .NotNull();
 
             //RuleFor(cmd => cmd.Entity.ProductId)
-            //    .MustAsync(ExistGenre)
+            //    .MustAsync(ExistProduct)
             //    .WithMessage(cmd => "");
 
             //RuleFor(cmd => cmd.Entity.UserId)
-            //    .MustAsync(ExistPublisher)
+            //    .MustAsync(ExistUser)
             //    .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.DeliveryCompanyId)

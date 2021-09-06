@@ -6,6 +6,6 @@ namespace OrderService.API.Contracts.Incoming.SearchConditions
     {
         public string[] Name { get; set; }
 
-        public string[] Rating { get; set; }
+        public double[] Rating { get; set; }
     }
 }

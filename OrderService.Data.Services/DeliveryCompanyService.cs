@@ -33,7 +33,7 @@ namespace OrderService.Data.Services
         {
             IQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
 
-            query = searchCondition.ListSortDirection == ListSortDirection.Ascending
+            query = searchCondition.SortDirection == "asc"
                 ? query.OrderBy(sortProperty)
                 : query.OrderByDescending(sortProperty);
 
@@ -51,7 +51,17 @@ namespace OrderService.Data.Services
         {
             IQueryable<DeliveryCompany> query = dbContext.DeliveryCompanies;
 
-            //todo searchConditions delivery
+            if (searchCondition.Name.Any())
+                foreach (var name in searchCondition.Name)
+                {
+                    var upperName = name.ToUpper().Trim();
+                    query = query.Where(x =>
+                        x.Name != null && x.Name.ToUpper().Contains(upperName));
+                }
+
+            if (searchCondition.Rating.Any())
+                foreach (var rating in searchCondition.Rating)
+                    query = query.Where(x => x.Rating == rating);
 
             return query;
         }

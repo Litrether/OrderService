@@ -16,7 +16,7 @@ namespace OrderService.Data.Services
     {
         Task<IReadOnlyCollection<OrderView>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
         Task<int> CountAsync(OrderSearchCondition searchCondition);
-        Task<bool> ExistsAsync(int id, OrderSearchCondition cancellationToken);
+        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
     }
 
     public class OrderViewService : BaseService<OrderView>, IOrderViewService
@@ -48,17 +48,59 @@ namespace OrderService.Data.Services
             return count % 10 == 0 ? count / 10 : count / 10 + 1;
         }
 
-        public Task<bool> ExistsAsync(int id, OrderSearchCondition cancellationToken)
-        {
-            throw new System.NotImplementedException();
-        }
+        public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>
+            dbContext.Orders.AnyAsync(entity => entity.Id == id, cancellationToken);
 
         private IQueryable<OrderView> BuildFindQuery(OrderSearchCondition searchCondition)
         {
             IQueryable<OrderView> query = dbContext.OrdersViews;
 
-            //todo searchCondition
-            return null;
+            if (searchCondition.Status.Any())
+                foreach (var status in searchCondition.Status)
+                {
+                    var upperStatus = status.ToUpper().Trim();
+                    query = query.Where(x =>
+                        x.Status != null && x.Status.ToUpper().Contains(upperStatus));
+                }
+
+            if (searchCondition.Cost.Any())
+                foreach (var cost in searchCondition.Cost)
+                    query = query.Where(x => x.Cost == cost);
+
+            if (searchCondition.Username.Any())
+                foreach (var username in searchCondition.Username)
+                {
+                    var upperUsername = username.ToUpper().Trim();
+                    query = query.Where(x =>
+                        x.Username != null && x.Username.ToUpper().Contains(upperUsername));
+                }
+
+            if (searchCondition.DeliveryCompany.Any())
+                foreach (var deliveryCompany in searchCondition.DeliveryCompany)
+                {
+                    var upperDeliveryCompany = deliveryCompany.ToUpper().Trim();
+                    query = query.Where(x =>
+                        x.DeliveryCompany != null &&
+                        x.DeliveryCompany.ToUpper().Contains(upperDeliveryCompany));
+                }
+
+            if (searchCondition.OrderedAt.Any())
+                foreach (var orderedAt in searchCondition.OrderedAt)
+                    query = query.Where(x => x.OrderedAt == orderedAt);
+
+            if (searchCondition.DeliveredAt != null)
+                foreach (var deliveredAt in searchCondition.DeliveredAt)
+                    query = query.Where(x => x.DeliveredAt == deliveredAt);
+
+            if (searchCondition.Product.Any())
+                foreach (var product in searchCondition.Product)
+                {
+                    var upperProduct = product.ToUpper().Trim();
+                    query = query.Where(x =>
+                        x.Product != null && x.Product.ToUpper().Contains(upperProduct));
+                }
+
+            return query;
         }
     }
 }

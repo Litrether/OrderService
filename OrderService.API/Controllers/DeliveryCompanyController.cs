@@ -40,11 +40,5 @@ namespace OrderService.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDeliveryCompany([FromRoute] int id, CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new DeleteDeliveryCompanyCommand(id), cancellationToken: cancellationToken);
-
-
-
-
-
-
     }
 }

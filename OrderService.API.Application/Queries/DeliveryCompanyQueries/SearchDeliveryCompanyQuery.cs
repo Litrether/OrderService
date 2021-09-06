@@ -33,7 +33,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
             DeliveryCompanySearchCondition searchCondition = new DeliveryCompanySearchCondition()
             {
                 Name = GetFilterValues(request.SearchCondition.Name),
-                Rating = GetFilterValues(request.SearchCondition.Rating),
+                Rating = request.SearchCondition.Rating,
                 Page = request.SearchCondition.Page,
                 PageSize = request.SearchCondition.PageSize,
                 SortDirection = request.SearchCondition.SortDirection,
