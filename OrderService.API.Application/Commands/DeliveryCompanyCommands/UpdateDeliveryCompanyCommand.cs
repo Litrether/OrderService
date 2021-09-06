@@ -25,7 +25,7 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 
         public async Task<Response> Handle(UpdateDeliveryCompanyCommand request, CancellationToken cancellationToken)
         {
-            var deliveryCompany = await _deliveryCompanyService.GetAsync(request.Id, cancellationToken);
+            var deliveryCompany = await _deliveryCompanyService.GetAsync(request.Id.Value, cancellationToken);
             if (deliveryCompany == null)
                 return Response.Error;
 

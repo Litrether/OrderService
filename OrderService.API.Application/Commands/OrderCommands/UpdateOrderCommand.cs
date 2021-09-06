@@ -25,7 +25,7 @@ namespace OrderService.API.Application.Commands.OrderCommands
 
         public async Task<Response> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
-            var order = await _orderService.GetAsync(request.Id, cancellationToken);
+            var order = await _orderService.GetAsync(request.Id.Value, cancellationToken);
             if (order == null)
                 return Response.Error;
 

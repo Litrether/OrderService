@@ -16,8 +16,4 @@
     <ProjectReference Include="..\OrderService.Data.Services\OrderService.Data.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validation\OrderCommands\" />
-  </ItemGroup>
-
 </Project>

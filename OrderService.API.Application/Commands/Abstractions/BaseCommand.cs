@@ -6,7 +6,7 @@ namespace OrderService.API.Application.Commands.Abstractions
         where TEntity : class
     {
         public TEntity Entity { get; set; }
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         protected BaseCommand(int id, TEntity entity)
         {
