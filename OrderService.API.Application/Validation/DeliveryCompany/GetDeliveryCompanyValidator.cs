@@ -28,7 +28,7 @@ namespace OrderService.API.Application.Validation.DeliveryCompany
 
             RuleFor(query => query.Id)
                 .MustAsync(Exist)
-                .WithMessage(query => Resources.Resources.DeliveryCompanyNotFound);
+                .WithMessage(query => string.Format(Resources.Resources.DeliveryCompanyNotFound, nameof(query.Id)));
         }
 
         private async Task<bool> Exist(int id, CancellationToken cancellationToken) =>
