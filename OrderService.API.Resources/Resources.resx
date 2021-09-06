@@ -117,47 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AuthorNameRequired" xml:space="preserve">
-    <value>An author name required</value>
-  </data>
-  <data name="AuthorNotFound" xml:space="preserve">
-    <value>The author with id '{0}' was not found.</value>
-  </data>
-  <data name="AuthorPatronymicRequired" xml:space="preserve">
-    <value>An author patronymic required</value>
-  </data>
-  <data name="AuthorSurnameRequired" xml:space="preserve">
-    <value>An author surname required</value>
-  </data>
-  <data name="BookAmountPageNotBeLessThanNull" xml:space="preserve">
-    <value>A book amount pages not be less than null.</value>
-  </data>
-  <data name="BookFundAmountNotBeLessThanNull" xml:space="preserve">
-    <value>A book fund amount not be less than null.</value>
-  </data>
-  <data name="BookFundNotFound" xml:space="preserve">
-    <value>The book fund with id '{0}' was not found.</value>
-  </data>
-  <data name="BookISBNRequired" xml:space="preserve">
-    <value>A book ISBN required.</value>
-  </data>
-  <data name="BookNotFound" xml:space="preserve">
-    <value>The book with id '{0}' was not found.</value>
-  </data>
-  <data name="BookTitleRequired" xml:space="preserve">
-    <value>A book title required.</value>
-  </data>
   <data name="BookYearNotBeLessThanNull" xml:space="preserve">
     <value>A book year not be less than null.</value>
   </data>
+  <data name="DeliveryCompanyNameRequired" xml:space="preserve">
+    <value>An delivery company name required.</value>
+  </data>
+  <data name="DeliveryCompanyNotFound" xml:space="preserve">
+    <value>The delivery company with id '{0}' was not found.</value>
+  </data>
+  <data name="DeliveryCompanyRatingNotBeLessThanNull" xml:space="preserve">
+    <value>A delivery company rating not be less than null.</value>
+  </data>
   <data name="ErrorProcessingRequest" xml:space="preserve">
     <value>An error occurred while processing your request.</value>
-  </data>
-  <data name="GenreNameRequired" xml:space="preserve">
-    <value>A genre name required.</value>
-  </data>
-  <data name="GenreNotFound" xml:space="preserve">
-    <value>The genre with id '{0}' was not found.</value>
   </data>
   <data name="InvalidDataProvided" xml:space="preserve">
     <value>Insufficient or invalid data was provided for this request.</value>
@@ -165,23 +138,17 @@
   <data name="InvalidSortDirection" xml:space="preserve">
     <value>Invalid sort direction. Valid values are 'asc' or 'desc'.</value>
   </data>
-  <data name="LibraryAddressRequired" xml:space="preserve">
-    <value>A library address required.</value>
+  <data name="OrderCostNotBeLessThanNull" xml:space="preserve">
+    <value>A order cost not be less than null.</value>
   </data>
-  <data name="LibraryNameRequired" xml:space="preserve">
-    <value>A library name required.</value>
+  <data name="OrderOrderedAtRequired" xml:space="preserve">
+    <value>A ordered date required.</value>
   </data>
-  <data name="LibraryNotFound" xml:space="preserve">
-    <value>The library with id '{0}' was not found.</value>
+  <data name="OrderStatusInvalidStatus" xml:space="preserve">
+    <value>A order The status must have one of three values: "Processed" or "On the way", "Delivered"</value>
   </data>
-  <data name="LibraryTelephoneRequired" xml:space="preserve">
-    <value>A library telephone required.</value>
-  </data>
-  <data name="PublisherNameRequired" xml:space="preserve">
-    <value>A publisher name required.</value>
-  </data>
-  <data name="PublisherNotFound" xml:space="preserve">
-    <value>The publisher with id '{0}' was not found.</value>
+  <data name="OrderStatusRequired" xml:space="preserve">
+    <value>A order status required.</value>
   </data>
   <data name="ResourceNotFound" xml:space="preserve">
     <value>The requested resource was not found.</value>

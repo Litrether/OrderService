@@ -61,96 +61,6 @@ namespace OrderService.API.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An author name required.
-        /// </summary>
-        internal static string AuthorNameRequired {
-            get {
-                return ResourceManager.GetString("AuthorNameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The author with id &apos;{0}&apos; was not found..
-        /// </summary>
-        internal static string AuthorNotFound {
-            get {
-                return ResourceManager.GetString("AuthorNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An author patronymic required.
-        /// </summary>
-        internal static string AuthorPatronymicRequired {
-            get {
-                return ResourceManager.GetString("AuthorPatronymicRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An author surname required.
-        /// </summary>
-        internal static string AuthorSurnameRequired {
-            get {
-                return ResourceManager.GetString("AuthorSurnameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A book amount pages not be less than null..
-        /// </summary>
-        internal static string BookAmountPageNotBeLessThanNull {
-            get {
-                return ResourceManager.GetString("BookAmountPageNotBeLessThanNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A book fund amount not be less than null..
-        /// </summary>
-        internal static string BookFundAmountNotBeLessThanNull {
-            get {
-                return ResourceManager.GetString("BookFundAmountNotBeLessThanNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The book fund with id &apos;{0}&apos; was not found..
-        /// </summary>
-        internal static string BookFundNotFound {
-            get {
-                return ResourceManager.GetString("BookFundNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A book ISBN required..
-        /// </summary>
-        internal static string BookISBNRequired {
-            get {
-                return ResourceManager.GetString("BookISBNRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The book with id &apos;{0}&apos; was not found..
-        /// </summary>
-        internal static string BookNotFound {
-            get {
-                return ResourceManager.GetString("BookNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A book title required..
-        /// </summary>
-        internal static string BookTitleRequired {
-            get {
-                return ResourceManager.GetString("BookTitleRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A book year not be less than null..
         /// </summary>
         internal static string BookYearNotBeLessThanNull {
@@ -160,29 +70,38 @@ namespace OrderService.API.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An delivery company name required..
+        /// </summary>
+        internal static string DeliveryCompanyNameRequired {
+            get {
+                return ResourceManager.GetString("DeliveryCompanyNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The delivery company with id &apos;{0}&apos; was not found..
+        /// </summary>
+        internal static string DeliveryCompanyNotFound {
+            get {
+                return ResourceManager.GetString("DeliveryCompanyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A delivery company rating not be less than null..
+        /// </summary>
+        internal static string DeliveryCompanyRatingNotBeLessThanNull {
+            get {
+                return ResourceManager.GetString("DeliveryCompanyRatingNotBeLessThanNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing your request..
         /// </summary>
         internal static string ErrorProcessingRequest {
             get {
                 return ResourceManager.GetString("ErrorProcessingRequest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A genre name required..
-        /// </summary>
-        internal static string GenreNameRequired {
-            get {
-                return ResourceManager.GetString("GenreNameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The genre with id &apos;{0}&apos; was not found..
-        /// </summary>
-        internal static string GenreNotFound {
-            get {
-                return ResourceManager.GetString("GenreNotFound", resourceCulture);
             }
         }
         
@@ -205,56 +124,38 @@ namespace OrderService.API.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A library address required..
+        ///   Looks up a localized string similar to A order cost not be less than null..
         /// </summary>
-        internal static string LibraryAddressRequired {
+        internal static string OrderCostNotBeLessThanNull {
             get {
-                return ResourceManager.GetString("LibraryAddressRequired", resourceCulture);
+                return ResourceManager.GetString("OrderCostNotBeLessThanNull", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A library name required..
+        ///   Looks up a localized string similar to A ordered date required..
         /// </summary>
-        internal static string LibraryNameRequired {
+        internal static string OrderOrderedAtRequired {
             get {
-                return ResourceManager.GetString("LibraryNameRequired", resourceCulture);
+                return ResourceManager.GetString("OrderOrderedAtRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The library with id &apos;{0}&apos; was not found..
+        ///   Looks up a localized string similar to A order The status must have one of three values: &quot;Processed&quot; or &quot;On the way&quot;, &quot;Delivered&quot;.
         /// </summary>
-        internal static string LibraryNotFound {
+        internal static string OrderStatusInvalidStatus {
             get {
-                return ResourceManager.GetString("LibraryNotFound", resourceCulture);
+                return ResourceManager.GetString("OrderStatusInvalidStatus", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A library telephone required..
+        ///   Looks up a localized string similar to A order status required..
         /// </summary>
-        internal static string LibraryTelephoneRequired {
+        internal static string OrderStatusRequired {
             get {
-                return ResourceManager.GetString("LibraryTelephoneRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A publisher name required..
-        /// </summary>
-        internal static string PublisherNameRequired {
-            get {
-                return ResourceManager.GetString("PublisherNameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The publisher with id &apos;{0}&apos; was not found..
-        /// </summary>
-        internal static string PublisherNotFound {
-            get {
-                return ResourceManager.GetString("PublisherNotFound", resourceCulture);
+                return ResourceManager.GetString("OrderStatusRequired", resourceCulture);
             }
         }
         

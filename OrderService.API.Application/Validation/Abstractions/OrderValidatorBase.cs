@@ -27,6 +27,8 @@ namespace OrderService.API.Application.Validation.Abstractions
 
             RuleFor(cmd => cmd.Entity.Status)
                 .Must(NotBeNullOrWhitespace)
+                .WithMessage(cmd => "")
+                .Must(HasValidStatus)
                 .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.Cost)
@@ -34,23 +36,19 @@ namespace OrderService.API.Application.Validation.Abstractions
                 .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.OrderedAt)
-                .NotNull();
-
-            //RuleFor(cmd => cmd.Entity.ProductId)
-            //    .MustAsync(ExistProduct)
-            //    .WithMessage(cmd => "");
-
-            //RuleFor(cmd => cmd.Entity.UserId)
-            //    .MustAsync(ExistUser)
-            //    .WithMessage(cmd => "");
+                .NotNull()
+                .WithMessage(cmd => "");
 
             RuleFor(cmd => cmd.Entity.DeliveryCompanyId)
                 .MustAsync(ExistDeliveryCompany)
                 .WithMessage(cmd => "");
         }
 
-        private bool NotBeNullOrWhitespace(string value) => 
+        private bool NotBeNullOrWhitespace(string value) =>
             !string.IsNullOrWhiteSpace(value);
+
+        private bool HasValidStatus(string value) =>
+            value == "Processed" || value == "On the way" || value == "Delivered";
 
         private bool NotBeLessThanNull(decimal value) =>
             value > 0;
