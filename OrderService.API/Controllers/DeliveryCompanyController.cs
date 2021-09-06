@@ -12,9 +12,7 @@ namespace OrderService.API.Controllers
     public class DeliveryCompanyController : MediatingControllerBase
     {
         public DeliveryCompanyController(IMediator _mediator) : base(_mediator)
-        {
-
-        }
+        { }
 
         [HttpGet]
         public async Task<IActionResult> GetAllDeliveryCompanies(CancellationToken cancellationToken = default) =>
@@ -34,12 +32,12 @@ namespace OrderService.API.Controllers
             CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new AddDeliveryCompanyCommand(deliveryCompany), cancellationToken: cancellationToken);
 
-        [HttpPut("{id")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateDeliveryCompany([FromRoute] int id, [FromBody] DeliveryCompanyDTO deliveryCompany,
             CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new UpdateDeliveryCompanyCommand(id, deliveryCompany), cancellationToken: cancellationToken);
 
-        [HttpDelete("{id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDeliveryCompany([FromRoute] int id, CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new DeleteDeliveryCompanyCommand(id), cancellationToken: cancellationToken);
 

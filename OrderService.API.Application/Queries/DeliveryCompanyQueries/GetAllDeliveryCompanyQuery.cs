@@ -30,11 +30,10 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
         {
             var deliveryCompanies = await _deliveryCompanyService.GetAllAsync(cancellationToken);
 
-            return deliveryCompanies.Select(MapToFoundDeliveryCompaniesDTO).ToArray();
+            return deliveryCompanies.Select(MapToFoundDeliveryCompanyDTO).ToArray();
         }
 
-
-        private FoundDeliveryCompanyDTO MapToFoundDeliveryCompaniesDTO(DeliveryCompany deliveryCompany)
+        private FoundDeliveryCompanyDTO MapToFoundDeliveryCompanyDTO(DeliveryCompany deliveryCompany)
         {
             return new FoundDeliveryCompanyDTO
             {

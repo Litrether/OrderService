@@ -15,17 +15,17 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 
     class AddDeliveryCompanyCommandHandler : IRequestHandler<AddDeliveryCompanyCommand, int>
     {
-        private readonly IDeliveryCompanyService _deliveryCommandService;
+        private readonly IDeliveryCompanyService _deliveryCompanyCommandService;
 
         public AddDeliveryCompanyCommandHandler(IDeliveryCompanyService deliveryCommandService)
         {
-            _deliveryCommandService = deliveryCommandService;
+            _deliveryCompanyCommandService = deliveryCommandService;
         }
 
         public async Task<int> Handle(AddDeliveryCompanyCommand request, CancellationToken cancellationToken)
         {
             var deliveryCompany = MapToDeliveryCompany(request.Entity);
-            var insertDeliveryCompany = await _deliveryCommandService.CreateAsync(deliveryCompany);
+            var insertDeliveryCompany = await _deliveryCompanyCommandService.CreateAsync(deliveryCompany);
             return insertDeliveryCompany.Id;
         }
 

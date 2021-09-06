@@ -2,8 +2,6 @@
 
 namespace OrderService.Data.Domain.Models
 {
-
-
     public class Order : KeyedEntityBase
     {
         public string Status { get; set; }

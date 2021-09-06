@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
 {
-    public class GetDeliveryCompanyQuery : IRequest<DeliveryCompany>
+    public class GetDeliveryCompanyQuery : IRequest<DeliveryCompanyDTO>
     {
         public int Id { get; set; }
 

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 {
-    public class UpdateDeliveryCompanyCommand : BaseCommand<DeliveryCompanyDTO, int>
+    public class UpdateDeliveryCompanyCommand : BaseCommand<DeliveryCompanyDTO, Response>
     {
-        public UpdateDeliveryCompanyCommand(DeliveryCompanyDTO deliveryCompany) : base(deliveryCompany) { }
+        public UpdateDeliveryCompanyCommand(int id, DeliveryCompanyDTO deliveryCompany) : base(id, deliveryCompany) { }
     }
 
     class UpdateDeliveryCompanyCommandHandler : IRequestHandler<UpdateDeliveryCompanyCommand, Response>
@@ -31,17 +31,17 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 
             var deliveryCompanyToUpdate = MapDTOToDeliveryCompany(request.Entity, deliveryCompany);
 
-            var updatedBook = await _deliveryCompanyService.UpdateAsync(deliveryCompanyToUpdate);
-            if (updatedBook == null)
+            var updatedDeliveryCompany = await _deliveryCompanyService.UpdateAsync(deliveryCompanyToUpdate);
+            if (updatedDeliveryCompany == null)
                 return Response.Error;
 
             return Response.Successfull;
         }
 
-        private DeliveryCompany MapDTOToDeliveryCompany(DeliveryCompanyDTO DeliveryCompanyDTO, DeliveryCompany deliveryCompany)
+        private DeliveryCompany MapDTOToDeliveryCompany(DeliveryCompanyDTO deliveryCompanyDTO, DeliveryCompany deliveryCompany)
         {
-            deliveryCompany.Name = DeliveryCompanyDTO.Name;
-            deliveryCompany.Rating = DeliveryCompanyDTO.Rating;
+            deliveryCompany.Name = deliveryCompanyDTO.Name;
+            deliveryCompany.Rating = deliveryCompanyDTO.Rating;
             return deliveryCompany;
         }
     }

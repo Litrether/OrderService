@@ -1,23 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace OrderService.API.Contracts.Outgoing
+namespace OrderService.Data.Domain.Models
 {
-    public class FoundOrderDTO
+    public class OrderView : KeyedEntityBase
     {
-        public int Id { get; set; }
-
         public string Status { get; set; }
 
         public decimal Cost { get; set; }
 
         public string Username { get; set; }
 
-        public string Product { get; set; }
-
-        public string DeliveryCompany { get; set; }
+        public string Product{ get; set; }
 
         public DateTime OrderedAt { get; set; }
 
         public DateTime DeliveredAt { get; set; }
+
+        public string DeliveryCompany { get; set; }
     }
 }
