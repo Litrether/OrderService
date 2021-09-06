@@ -21,7 +21,7 @@ namespace OrderService.API.Application.Validation.OrderCommands
         {
             RuleFor(query => query.Id)
                 .NotNull()
-                .WithMessage(query => "");
+                .WithMessage(query => "asd");
 
             RuleFor(query => query.Id)
                 .MustAsync(Exist)
