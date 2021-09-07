@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.EF.SQL;
 using OrderService.Data.Services.Abstraction;
 using OrderService.Data.Services.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -16,20 +18,22 @@ namespace OrderService.Data.Services
     {
         Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty);
         Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition);
-        Task<bool> ExistsAsync(int id);
+        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
     }
 
     public class DeliveryCompanyService : BaseService<DeliveryCompany>, IDeliveryCompanyService
     {
         private readonly IDatabaseContext _context;
+        private readonly IMongoCollection<DeliveryCompany> _collection;
 
         public DeliveryCompanyService(IDatabaseContext context) : base(context)
         {
             _context = context;
+            _collection = _context.GetCollection<DeliveryCompany>(nameof(DeliveryCompany));
         }
 
-        public Task<bool> ExistsAsync(int id) =>
-            _context.AnyAsync(entity => entity.Id == id, cancellationToken);
+        public async Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>
+            await _collection.Find(o => o.Id == id).AnyAsync();
 
         public async Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty)
         {
@@ -46,19 +50,19 @@ namespace OrderService.Data.Services
         {
             IQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
 
-            return await query.CountAsync();
+            return Convert.ToInt32(await query.CountAsync());
         }
 
         private IQueryable<DeliveryCompany> BuildFindQuery(DeliveryCompanySearchCondition searchCondition)
         {
-            IQueryable<DeliveryCompany> query = dbContext.DeliveryCompanies;
+            var query = _collection.AsQueryable();
 
             if (searchCondition.Name.Any())
                 foreach (var name in searchCondition.Name)
                 {
                     var upperName = name.ToUpper().Trim();
                     query = query.Where(x =>
-                        x.Name != null && x.Name.ToUpper().Contains(upperName));
+                        x.Name != null && x.Name.ToUpper().Contains(upperName)); ;
                 }
 
             if (searchCondition.Rating.Any())

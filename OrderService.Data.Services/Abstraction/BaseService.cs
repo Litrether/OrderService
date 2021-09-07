@@ -12,11 +12,11 @@ namespace OrderService.Data.Services.Abstraction
 {
     public interface IBaseService<TEntity> where TEntity : KeyedEntityBase
     {
-        Task<IReadOnlyCollection<TEntity>> GetAllAsync();
-        Task<TEntity> GetAsync(int id);
+        Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken);
+        Task<TEntity> GetAsync(int id, CancellationToken cancellationToken);
         Task<TEntity> CreateAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(int id, CancellationToken cancellationToken);
     }
 
     public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : KeyedEntityBase
@@ -25,21 +25,13 @@ namespace OrderService.Data.Services.Abstraction
 
         protected BaseService(IDatabaseContext context)
         {
-            _collection = context.GetCollection<TEntity>(GetCollectionName());
+            _collection = context.GetCollection<TEntity>(nameof(TEntity);
         }
 
-        private static string GetCollectionName()
-        {
-            return (typeof(TEntity)
-                .GetCustomAttributes(typeof(BsonCollectionAttribute), true)
-                .FirstOrDefault() as BsonCollectionAttribute)
-                .CollectionName;
-        }
-
-        public async Task<IReadOnlyCollection<TEntity>> GetAllAsync() =>
+        public async Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken) =>
             await _collection.Find(o => true).ToListAsync();
 
-        public async Task<TEntity> GetAsync(int id) =>
+        public async Task<TEntity> GetAsync(int id, CancellationToken cancellationToken) =>
              await _collection.Find(o => o.Id == id).FirstOrDefaultAsync();
 
         public async Task<TEntity> CreateAsync(TEntity newEntity)
@@ -54,9 +46,9 @@ namespace OrderService.Data.Services.Abstraction
             return newEntity;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id, CancellationToken cancellationToken)
         {
-            var entity = await GetAsync(id);
+            var entity = await GetAsync(id, cancellationToken);
             if (entity != null)
                 _collection.DeleteOne(o => o.Id == id);
         }

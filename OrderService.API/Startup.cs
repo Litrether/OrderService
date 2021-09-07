@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,11 +20,10 @@ namespace OrderService.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDatabaseContext, DatabaseContext>();
             services.AddControllers();
             services.AddCors();
             services.AddOrderServiceApplication();
-            services.AddDbContext<DatabaseContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("OrderServiceDbContext")));
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Order service", Version = "v1" });

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using OrderService.API.Contracts;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.EF.SQL;
@@ -20,11 +22,13 @@ namespace OrderService.Data.Services
 
     public class OrderViewService : BaseService<OrderView>, IOrderViewService
     {
-        private readonly DatabaseContext dbContext;
+        private readonly IDatabaseContext _context;
+        private readonly IMongoCollection<OrderView> _collection;
 
-        public OrderViewService(DatabaseContext dbContext) : base(dbContext)
+        public OrderViewService(IDatabaseContext context) : base(context)
         {
-            this.dbContext = dbContext;
+            _context = context;
+            _collection = _context.GetCollection<OrderView>(nameof(DeliveryCompany));
         }
 
         public async Task<IReadOnlyCollection<OrderView>> FindAsync(OrderSearchCondition searchCondition, string sortProperty)
@@ -47,39 +51,36 @@ namespace OrderService.Data.Services
             return count % 10 == 0 ? count / 10 : count / 10 + 1;
         }
 
-        public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>
-            dbContext.Orders.AnyAsync(entity => entity.Id == id, cancellationToken);
+        public async Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>
+            await _collection.Find(o => o.Id == id).AnyAsync();
 
         private IQueryable<OrderView> BuildFindQuery(OrderSearchCondition searchCondition)
         {
-            IQueryable<OrderView> query = dbContext.OrdersViews;
+            var query = _collection.AsQueryable();
 
             if (searchCondition.Status.Any())
                 foreach (var status in searchCondition.Status)
                 {
                     var upperStatus = status.ToUpper().Trim();
-                    query = query.Where(x =>
-                        x.Status != null && x.Status.ToUpper().Contains(upperStatus));
+                    query = query.Where(x => x.Status != null && x.Status.ToUpper().Contains(upperStatus));
                 }
 
             if (searchCondition.Cost.Any())
                 foreach (var cost in searchCondition.Cost)
-                    query = query.Where(x => x.Cost == cost);
+                    query = query.Where(x => false);
 
             if (searchCondition.Username.Any())
                 foreach (var username in searchCondition.Username)
                 {
                     var upperUsername = username.ToUpper().Trim();
-                    query = query.Where(x =>
-                        x.Username != null && x.Username.ToUpper().Contains(upperUsername));
+                    query = query.Where(x => x.Username != null && x.Username.ToUpper().Contains(upperUsername));
                 }
 
             if (searchCondition.DeliveryCompany.Any())
                 foreach (var deliveryCompany in searchCondition.DeliveryCompany)
                 {
                     var upperDeliveryCompany = deliveryCompany.ToUpper().Trim();
-                    query = query.Where(x =>
-                        x.DeliveryCompany != null &&
+                    query = query.Where(x => x.DeliveryCompany != null && 
                         x.DeliveryCompany.ToUpper().Contains(upperDeliveryCompany));
                 }
 
