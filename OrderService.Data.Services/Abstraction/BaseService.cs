@@ -1,66 +1,64 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
+using OrderService.Data.Core.Attributes;
+using OrderService.Data.Domain;
 using OrderService.Data.EF.SQL;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace OrderService.Data.Services.Abstraction
 {
-    public interface IBaseService<TEntity> where TEntity : class
+    public interface IBaseService<TEntity> where TEntity : KeyedEntityBase
     {
-        Task<TEntity> GetAsync(int id, CancellationToken cancellationToken);
-        Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken);
+        Task<IReadOnlyCollection<TEntity>> GetAllAsync();
+        Task<TEntity> GetAsync(int id);
         Task<TEntity> CreateAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task DeleteAsync(int id, CancellationToken cancellationToken);
+        Task DeleteAsync(int id);
     }
 
-    public abstract class BaseService<TEntity> : IBaseService<TEntity>
-        where TEntity : class
+    public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : KeyedEntityBase
     {
-        private OrderServiceDbContext dbContext;
-        private readonly DbSet<TEntity> dbSet;
+        private readonly IMongoCollection<TEntity> _collection;
 
-        protected BaseService(OrderServiceDbContext dbContext)
+        protected BaseService(IDatabaseContext context)
         {
-            this.dbContext = dbContext;
-            dbSet = dbContext.Set<TEntity>();
+            _collection = context.GetCollection<TEntity>(GetCollectionName());
         }
 
-        public async Task<TEntity> GetAsync(int id, CancellationToken cancellationToken)
+        private static string GetCollectionName()
         {
-            return await dbSet.FindAsync(id, cancellationToken);
+            return (typeof(TEntity)
+                .GetCustomAttributes(typeof(BsonCollectionAttribute), true)
+                .FirstOrDefault() as BsonCollectionAttribute)
+                .CollectionName;
         }
 
-        public async Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken)
-        {
-            return await dbSet.ToListAsync(cancellationToken);
-        }
+        public async Task<IReadOnlyCollection<TEntity>> GetAllAsync() =>
+            await _collection.Find(o => true).ToListAsync();
+
+        public async Task<TEntity> GetAsync(int id) =>
+             await _collection.Find(o => o.Id == id).FirstOrDefaultAsync();
 
         public async Task<TEntity> CreateAsync(TEntity newEntity)
         {
-            await dbSet.AddAsync(newEntity);
-            await dbContext.SaveChangesAsync();
+            await _collection.InsertOneAsync(newEntity);
             return newEntity;
         }
 
         public async Task<TEntity> UpdateAsync(TEntity newEntity)
         {
-            if (dbContext.Entry(newEntity).State == EntityState.Detached)
-                dbSet.Attach(newEntity);
-
-            dbContext.ChangeTracker.DetectChanges();
-            await dbContext.SaveChangesAsync();
+            await _collection.ReplaceOneAsync(o => o.Id == newEntity.Id, newEntity);
             return newEntity;
         }
 
-        public async Task DeleteAsync(int id, CancellationToken cancellationToken)
+        public async Task DeleteAsync(int id)
         {
-            var entity = await GetAsync(id, cancellationToken);
+            var entity = await GetAsync(id);
             if (entity != null)
-            {
-                dbSet.Remove(entity);
-            }
+                _collection.DeleteOne(o => o.Id == id);
         }
     }
 }

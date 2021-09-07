@@ -1,7 +1,10 @@
-﻿namespace OrderService.Data.Domain
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace OrderService.Data.Domain
 {
-    public class KeyedEntityBase
+    public abstract class KeyedEntityBase
     {
+        [BsonId]
         public int Id { get; set; }
     }
 }

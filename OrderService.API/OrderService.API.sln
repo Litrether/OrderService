@@ -22,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.API.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.API.Contracts", "..\OrderService.API.Contracts\OrderService.API.Contracts.csproj", "{EC889672-F70B-4310-9D2E-9200EB925BF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Data.Domain", "..\OrderService.Data.Domain\OrderService.Data.Domain.csproj", "{C35D0389-377A-4B71-9403-4C02DA17DFC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Data.Core", "..\OrderService.Data.Domain\OrderService.Data.Core.csproj", "{C35D0389-377A-4B71-9403-4C02DA17DFC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Data.EF.SQL", "..\OrderService.Data.EF.SQL\OrderService.Data.EF.SQL.csproj", "{EF69FBAA-C45E-4C45-BAB3-EAE324C8766F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Data.Infrastructure", "..\OrderService.Data.EF.SQL\OrderService.Data.Infrastructure.csproj", "{EF69FBAA-C45E-4C45-BAB3-EAE324C8766F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C35D0389-377A-4B71-9403-4C02DA17DFC5} = {C35D0389-377A-4B71-9403-4C02DA17DFC5}
 	EndProjectSection
@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Data.Services"
 		{EF69FBAA-C45E-4C45-BAB3-EAE324C8766F} = {EF69FBAA-C45E-4C45-BAB3-EAE324C8766F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.API.Resources", "..\OrderService.API.Resources\OrderService.API.Resources.csproj", "{B8AE37A3-8372-4FF2-96FF-3D70CD75DC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.API.Resources", "..\OrderService.API.Resources\OrderService.API.Resources.csproj", "{B8AE37A3-8372-4FF2-96FF-3D70CD75DC01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

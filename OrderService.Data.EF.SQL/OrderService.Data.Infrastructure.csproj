@@ -7,10 +7,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
+    <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OrderService.Data.Domain\OrderService.Data.Domain.csproj" />
+    <ProjectReference Include="..\OrderService.Data.Domain\OrderService.Data.Core.csproj" />
   </ItemGroup>
 
 </Project>

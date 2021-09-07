@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.Data.Domain.Models;
 using OrderService.Data.EF.SQL;
@@ -15,18 +16,20 @@ namespace OrderService.Data.Services
     {
         Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty);
         Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition);
-        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
+        Task<bool> ExistsAsync(int id);
     }
 
     public class DeliveryCompanyService : BaseService<DeliveryCompany>, IDeliveryCompanyService
     {
-        private readonly OrderServiceDbContext dbContext;
+        private readonly IDatabaseContext _context;
 
-        public DeliveryCompanyService(OrderServiceDbContext dbContext) : base(dbContext) =>
-            this.dbContext = dbContext;
+        public DeliveryCompanyService(IDatabaseContext context) : base(context)
+        {
+            _context = context;
+        }
 
-        public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>
-            dbContext.DeliveryCompanies.AnyAsync(entity => entity.Id == id, cancellationToken);
+        public Task<bool> ExistsAsync(int id) =>
+            _context.AnyAsync(entity => entity.Id == id, cancellationToken);
 
         public async Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty)
         {

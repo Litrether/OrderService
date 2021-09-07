@@ -14,9 +14,9 @@ namespace OrderService.Data.Services
 
     public class OrderService : BaseService<Order>, IOrderService
     {
-        private readonly OrderServiceDbContext dbContext;
+        private readonly DatabaseContext dbContext;
 
-        public OrderService(OrderServiceDbContext dbContext) : base(dbContext) =>
+        public OrderService(DatabaseContext dbContext) : base(dbContext) =>
             this.dbContext = dbContext;
 
         public Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>

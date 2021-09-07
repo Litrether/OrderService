@@ -24,7 +24,7 @@ namespace OrderService.API
             services.AddControllers();
             services.AddCors();
             services.AddOrderServiceApplication();
-            services.AddDbContext<OrderServiceDbContext>(options =>
+            services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("OrderServiceDbContext")));
             services.AddSwaggerGen(s =>
             {

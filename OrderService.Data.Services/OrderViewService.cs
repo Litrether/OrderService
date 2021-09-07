@@ -20,9 +20,9 @@ namespace OrderService.Data.Services
 
     public class OrderViewService : BaseService<OrderView>, IOrderViewService
     {
-        private readonly OrderServiceDbContext dbContext;
+        private readonly DatabaseContext dbContext;
 
-        public OrderViewService(OrderServiceDbContext dbContext) : base(dbContext)
+        public OrderViewService(DatabaseContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
         }

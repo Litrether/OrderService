@@ -8,6 +8,6 @@ namespace OrderService.Data.EF.SQL
             services.AddOrderServiceDbContext();
 
         public static void AddOrderServiceDbContext(this IServiceCollection services) =>
-            services.AddScoped<OrderServiceDbContext>();
+            services.AddScoped<DatabaseContext>();
     }
 }
