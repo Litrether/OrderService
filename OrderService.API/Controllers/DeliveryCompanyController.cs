@@ -19,7 +19,7 @@ namespace OrderService.API.Controllers
             await ExecuteQueryAsync(new GetAllDeliveryCompanyQuery(), cancellationToken: cancellationToken);
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDeliveryCompany([FromRoute] int id, CancellationToken cancellationToken = default) =>
+        public async Task<IActionResult> GetDeliveryCompany(int id, CancellationToken cancellationToken = default) =>
             await ExecuteQueryAsync(new GetDeliveryCompanyQuery(id), cancellationToken: cancellationToken);
 
         [HttpPost("search")]
@@ -33,12 +33,12 @@ namespace OrderService.API.Controllers
             await ExecuteCommandAsync(new AddDeliveryCompanyCommand(deliveryCompany), cancellationToken: cancellationToken);
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDeliveryCompany([FromRoute] int id, [FromBody] DeliveryCompanyDTO deliveryCompany,
+        public async Task<IActionResult> UpdateDeliveryCompany(int id, [FromBody] DeliveryCompanyDTO deliveryCompany,
             CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new UpdateDeliveryCompanyCommand(id, deliveryCompany), cancellationToken: cancellationToken);
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDeliveryCompany([FromRoute] int id, CancellationToken cancellationToken = default) =>
+        public async Task<IActionResult> DeleteDeliveryCompany(int id, CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new DeleteDeliveryCompanyCommand(id), cancellationToken: cancellationToken);
     }
 }

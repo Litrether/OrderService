@@ -41,9 +41,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
             {
                 Status = order.Status,
                 Cost = order.Cost,
-                DeliveredAt = order.DeliveredAt,
                 DeliveryCompanyId = order.DeliveryCompanyId,
-                OrderedAt = order.OrderedAt,
                 ProductId = order.ProductId,
                 UserId = order.UserId,
             };

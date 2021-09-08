@@ -37,8 +37,6 @@ namespace OrderService.API.Application.Commands.OrderCommands
                 Cost = order.Cost,
                 UserId = order.UserId,
                 ProductId = order.ProductId,
-                OrderedAt = order.OrderedAt,
-                DeliveredAt = order.DeliveredAt,
                 DeliveryCompanyId = order.DeliveryCompanyId,
             };
         }

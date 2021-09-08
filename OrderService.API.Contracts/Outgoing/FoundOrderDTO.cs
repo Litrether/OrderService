@@ -10,14 +10,10 @@ namespace OrderService.API.Contracts.Outgoing
 
         public decimal Cost { get; set; }
 
-        public string Username { get; set; }
+        public string UserId { get; set; }
 
-        public string Product { get; set; }
+        public int ProductId { get; set; }
 
-        public string DeliveryCompany { get; set; }
-
-        public DateTime OrderedAt { get; set; }
-
-        public DateTime DeliveredAt { get; set; }
+        public int DeliveryCompanyId { get; set; }
     }
 }

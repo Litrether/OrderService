@@ -23,13 +23,12 @@ namespace OrderService.Data.Services
 
     public class DeliveryCompanyService : BaseService<DeliveryCompany>, IDeliveryCompanyService
     {
-        private readonly IDatabaseContext _context;
         private readonly IMongoCollection<DeliveryCompany> _collection;
 
-        public DeliveryCompanyService(IDatabaseContext context) : base(context)
+        public DeliveryCompanyService(IDatabaseContext context) 
+            : base(context.GetCollection<DeliveryCompany>(nameof(DeliveryCompany)))
         {
-            _context = context;
-            _collection = _context.GetCollection<DeliveryCompany>(nameof(DeliveryCompany));
+            _collection = context.GetCollection<DeliveryCompany>(nameof(DeliveryCompany));
         }
 
         public async Task<bool> ExistsAsync(int id, CancellationToken cancellationToken) =>

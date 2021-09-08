@@ -18,7 +18,7 @@ namespace OrderService.API.Controllers
             await ExecuteQueryAsync(new GetAllOrderQuery(), cancellationToken: cancellationToken);
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrder([FromRoute] int id, CancellationToken cancellationToken = default) =>
+        public async Task<IActionResult> GetOrder(int id, CancellationToken cancellationToken = default) =>
             await ExecuteQueryAsync(new GetOrderQuery(id), cancellationToken: cancellationToken);
 
         [HttpPost("search")]
@@ -32,12 +32,12 @@ namespace OrderService.API.Controllers
             await ExecuteCommandAsync(new AddOrderCommand(order), cancellationToken: cancellationToken);
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder([FromRoute] int id, [FromBody] OrderDTO order,
+        public async Task<IActionResult> UpdateOrder(int id, [FromBody] OrderDTO order,
             CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new UpdateOrderCommand(id, order), cancellationToken: cancellationToken);
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder([FromRoute] int id, CancellationToken cancellationToken = default) =>
+        public async Task<IActionResult> DeleteOrder(int id, CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new DeleteOrderCommand(id), cancellationToken: cancellationToken);
     }
 }

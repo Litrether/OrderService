@@ -21,11 +21,11 @@ namespace OrderService.API.Application.Queries.OrderQueries
 
     class SearchOrderQueryHandler : IRequestHandler<SearchOrderQuery, PagedResponse<FoundOrderDTO>>
     {
-        private readonly IOrderViewService _orderViewService;
+        private readonly IOrderService _orderService;
 
-        public SearchOrderQueryHandler(IOrderViewService orderViewService)
+        public SearchOrderQueryHandler(IOrderService orderService)
         {
-            _orderViewService = orderViewService;
+            _orderService = orderService;
         }
 
         public async Task<PagedResponse<FoundOrderDTO>> Handle(SearchOrderQuery request, CancellationToken cancellationToken)
@@ -34,11 +34,9 @@ namespace OrderService.API.Application.Queries.OrderQueries
             {
                 Status = GetFilterValues(request.SearchCondition.Status),
                 Cost = request.SearchCondition.Cost,
-                DeliveryCompany = GetFilterValues(request.SearchCondition.DeliveryCompany),
-                Product = GetFilterValues(request.SearchCondition.Product),
-                Username = GetFilterValues(request.SearchCondition.Username),
-                DeliveredAt = request.SearchCondition.DeliveredAt,
-                OrderedAt = request.SearchCondition.OrderedAt,
+                DeliveryCompanyId = request.SearchCondition.DeliveryCompanyId,
+                ProductId = request.SearchCondition.ProductId,
+                UserId = GetFilterValues(request.SearchCondition.UserId),
                 Page = request.SearchCondition.Page,
                 PageSize = request.SearchCondition.PageSize,
                 SortDirection = request.SearchCondition.SortDirection,
@@ -46,10 +44,10 @@ namespace OrderService.API.Application.Queries.OrderQueries
             };
 
             var sortProperty = GetSortProperty(searchCondition.SortProperty);
-            IReadOnlyCollection<OrderView> foundDeliveryCompany = await _orderViewService.FindAsync(
+            IReadOnlyCollection<Order> foundDeliveryCompany = await _orderService.FindAsync(
                 searchCondition, sortProperty);
-            FoundOrderDTO[] mappedDeliveryCompany = foundDeliveryCompany.Select(MapToFoundDeliveryCompanyDTO).ToArray();
-            var totalCount = await _orderViewService.CountAsync(searchCondition);
+            FoundOrderDTO[] mappedDeliveryCompany = foundDeliveryCompany.Select(MapToFoundOrderDTO).ToArray();
+            var totalCount = await _orderService.CountAsync(searchCondition);
 
             return new PagedResponse<FoundOrderDTO>
             {
@@ -58,18 +56,16 @@ namespace OrderService.API.Application.Queries.OrderQueries
             };
         }
 
-        private FoundOrderDTO MapToFoundDeliveryCompanyDTO(OrderView deliveryCompany)
+        private FoundOrderDTO MapToFoundOrderDTO(Order order)
         {
             return new FoundOrderDTO
             {
-                Id = deliveryCompany.Id,
-                Status = deliveryCompany.Status,
-                Cost = deliveryCompany.Cost,
-                Username = deliveryCompany.Username,
-                Product = deliveryCompany.Product,
-                DeliveryCompany = deliveryCompany.DeliveryCompany,
-                OrderedAt = deliveryCompany.OrderedAt,
-                DeliveredAt = deliveryCompany.DeliveredAt,
+                Id = order.Id,
+                Status = order.Status,
+                Cost = order.Cost,
+                UserId = order.UserId,
+                ProductId = order.ProductId,
+                DeliveryCompanyId = order.DeliveryCompanyId,
             };
         }
 

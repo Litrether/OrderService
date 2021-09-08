@@ -7,16 +7,12 @@ namespace OrderService.API.Contracts
     {
         public string[] Status { get; set; }
 
-        public int[] Cost { get; set; }
+        public decimal[] Cost { get; set; }
 
-        public string[] Product { get; set; }
+        public string[] UserId { get; set; }
 
-        public string[] Username { get; set; }
+        public int[] ProductId { get; set; }
 
-        public string[] DeliveryCompany { get; set; }
-
-        public DateTime[] DeliveredAt { get; set; }
-
-        public DateTime[] OrderedAt { get; set; }
+        public int[] DeliveryCompanyId { get; set; }
     }
 }

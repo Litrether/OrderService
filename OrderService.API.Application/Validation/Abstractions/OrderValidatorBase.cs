@@ -35,10 +35,6 @@ namespace OrderService.API.Application.Validation.Abstractions
                 .Must(NotBeLessThanNull)
                 .WithMessage(cmd => Resources.Resources.OrderCostNotBeLessThanNull);
 
-            RuleFor(cmd => cmd.Entity.OrderedAt)
-                .NotNull()
-                .WithMessage(cmd => Resources.Resources.OrderOrderedAtRequired);
-
             RuleFor(cmd => cmd.Entity.DeliveryCompanyId)
                 .MustAsync(ExistDeliveryCompany)
                 .WithMessage(cmd => Resources.Resources.DeliveryCompanyNotFound);

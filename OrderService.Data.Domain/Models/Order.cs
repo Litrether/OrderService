@@ -12,11 +12,6 @@ namespace OrderService.Data.Domain.Models
 
         public int ProductId { get; set; }
 
-        public DateTime OrderedAt { get; set; }
-
-        public DateTime DeliveredAt { get; set; }
-
         public int DeliveryCompanyId { get; set; }
-        public DeliveryCompany DeliveryCompany { get; set; }
     }
 }

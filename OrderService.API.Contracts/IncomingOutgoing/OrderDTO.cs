@@ -13,9 +13,5 @@ namespace OrderService.API.Contracts.IncomingOutgoing
         public int ProductId { get; set; }
 
         public int DeliveryCompanyId { get; set; }
-
-        public DateTime OrderedAt { get; set; }
-
-        public DateTime DeliveredAt { get; set; }
     }
 }

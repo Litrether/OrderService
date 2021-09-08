@@ -13,7 +13,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
 
         public GetDeliveryCompanyQuery(int id)
         {
-            Id = Id;
+            Id = id;
         }
     }
 

@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using OrderService.Data.Core;
-using OrderService.Data.Domain;
-using OrderService.Data.Domain.Models;
+﻿using MongoDB.Driver;
 
 namespace OrderService.Data.EF.SQL
 {

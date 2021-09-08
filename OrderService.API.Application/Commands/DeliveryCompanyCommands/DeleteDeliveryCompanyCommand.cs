@@ -17,9 +17,9 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 
     class DeleteDeliveryCompanyCommandHandler : IRequestHandler<DeleteDeliveryCompanyCommand>
     {
-        private readonly IOrderService _deliveryCompanyService;
+        private readonly IDeliveryCompanyService _deliveryCompanyService;
 
-        public DeleteDeliveryCompanyCommandHandler(IOrderService deliveryCompanyService)
+        public DeleteDeliveryCompanyCommandHandler(IDeliveryCompanyService deliveryCompanyService)
         {
             _deliveryCompanyService = deliveryCompanyService;
         }

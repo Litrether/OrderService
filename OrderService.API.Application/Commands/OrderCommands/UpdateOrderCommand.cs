@@ -42,8 +42,6 @@ namespace OrderService.API.Application.Commands.OrderCommands
         {
             order.Status = orderDTO.Status;
             order.Cost = orderDTO.Cost;
-            order.DeliveredAt = orderDTO.DeliveredAt;
-            order.OrderedAt = orderDTO.OrderedAt;
             order.UserId = orderDTO.UserId;
             order.ProductId = orderDTO.ProductId;
             order.DeliveryCompanyId = order.DeliveryCompanyId;

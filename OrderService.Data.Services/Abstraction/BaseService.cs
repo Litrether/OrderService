@@ -23,16 +23,17 @@ namespace OrderService.Data.Services.Abstraction
     {
         private readonly IMongoCollection<TEntity> _collection;
 
-        protected BaseService(IDatabaseContext context)
+        protected BaseService(IMongoCollection<TEntity> сollection)
         {
-            _collection = context.GetCollection<TEntity>(nameof(TEntity);
+            _collection = сollection;
         }
 
         public async Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken) =>
             await _collection.Find(o => true).ToListAsync();
 
         public async Task<TEntity> GetAsync(int id, CancellationToken cancellationToken) =>
-             await _collection.Find(o => o.Id == id).FirstOrDefaultAsync();
+            await _collection.Find(o => o.Id == id).FirstOrDefaultAsync();
+
 
         public async Task<TEntity> CreateAsync(TEntity newEntity)
         {
@@ -46,11 +47,7 @@ namespace OrderService.Data.Services.Abstraction
             return newEntity;
         }
 
-        public async Task DeleteAsync(int id, CancellationToken cancellationToken)
-        {
-            var entity = await GetAsync(id, cancellationToken);
-            if (entity != null)
-                _collection.DeleteOne(o => o.Id == id);
-        }
+        public async Task DeleteAsync(int id, CancellationToken cancellationToken) =>
+            await _collection.DeleteOneAsync(o => o.Id == id);
     }
 }

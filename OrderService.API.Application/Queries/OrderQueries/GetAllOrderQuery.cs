@@ -18,11 +18,14 @@ namespace OrderService.API.Application.Queries.OrderQueries
 
     class GetAllOrderQueryHandler : IRequestHandler<GetAllOrderQuery, IReadOnlyCollection<FoundOrderDTO>>
     {
-        private readonly IOrderViewService _orderService;
+        private readonly IOrderService _orderService;
+        private readonly IDeliveryCompanyService _deliveryCompanyService;
 
-        public GetAllOrderQueryHandler(IOrderViewService orderService)
+        public GetAllOrderQueryHandler(IOrderService orderService,
+            IDeliveryCompanyService deliveryCompanyService)
         {
             _orderService = orderService;
+            _deliveryCompanyService = deliveryCompanyService;
         }
 
         public async Task<IReadOnlyCollection<FoundOrderDTO>> Handle(GetAllOrderQuery request,
@@ -33,19 +36,16 @@ namespace OrderService.API.Application.Queries.OrderQueries
             return orders.Select(MapToFoundOrderDTO).ToArray();
         }
 
-
-        private FoundOrderDTO MapToFoundOrderDTO(OrderView order)
+        private FoundOrderDTO MapToFoundOrderDTO(Order order)
         {
             return new FoundOrderDTO
             {
                 Id = order.Id,
                 Status = order.Status,
                 Cost = order.Cost,
-                Username = order.Username,
-                Product = order.Product,
-                DeliveryCompany = order.DeliveryCompany,
-                DeliveredAt = order.DeliveredAt,
-                OrderedAt = order.OrderedAt,
+                UserId = order.UserId,
+                ProductId = order.ProductId,
+                DeliveryCompanyId = order.DeliveryCompanyId,
             };
         }
     }
