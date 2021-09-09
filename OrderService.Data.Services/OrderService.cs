@@ -17,7 +17,7 @@ namespace OrderService.Data.Services
     {
         Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty);
         Task<int> CountAsync(OrderSearchCondition searchCondition);
-        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
+        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);
     }
 
     public class OrderService : BaseService<Order>, IOrderService
@@ -68,11 +68,11 @@ namespace OrderService.Data.Services
                 foreach (var cost in searchCondition.Cost)
                     query = query.Where(x => false);
 
-            if (searchCondition.UserId.Any())
-                foreach (var username in searchCondition.UserId)
+            if (searchCondition.Username.Any())
+                foreach (var username in searchCondition.Username)
                 {
                     var upperUsername = username.ToUpper().Trim();
-                    query = query.Where(x => x.UserId != null && x.UserId.ToUpper().Contains(upperUsername));
+                    query = query.Where(x => x.Username != null && x.Username.ToUpper().Contains(upperUsername));
                 }
 
             if (searchCondition.DeliveryCompanyId.Any())

@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Data.Services"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.API.Resources", "..\OrderService.API.Resources\OrderService.API.Resources.csproj", "{B8AE37A3-8372-4FF2-96FF-3D70CD75DC01}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCuttingLayer", "..\..\CrossCuttingLayer\CrossCuttingLayer.csproj", "{90F5E481-400D-409C-85B5-7D7098BB94FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{B8AE37A3-8372-4FF2-96FF-3D70CD75DC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8AE37A3-8372-4FF2-96FF-3D70CD75DC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8AE37A3-8372-4FF2-96FF-3D70CD75DC01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F5E481-400D-409C-85B5-7D7098BB94FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F5E481-400D-409C-85B5-7D7098BB94FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F5E481-400D-409C-85B5-7D7098BB94FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F5E481-400D-409C-85B5-7D7098BB94FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{EF69FBAA-C45E-4C45-BAB3-EAE324C8766F} = {D7DEF531-3409-476E-84D5-7B6843762B95}
 		{EEA19518-B626-4CCA-AA07-DF8AE3A56A2C} = {D7DEF531-3409-476E-84D5-7B6843762B95}
 		{B8AE37A3-8372-4FF2-96FF-3D70CD75DC01} = {7E6CB2AD-1836-4B57-9D8F-E29F734D258B}
+		{90F5E481-400D-409C-85B5-7D7098BB94FE} = {D7DEF531-3409-476E-84D5-7B6843762B95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D7DDAC00-508A-428C-B3B5-917363825DCA}

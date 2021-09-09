@@ -36,7 +36,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
                 Cost = request.SearchCondition.Cost,
                 DeliveryCompanyId = request.SearchCondition.DeliveryCompanyId,
                 ProductId = request.SearchCondition.ProductId,
-                UserId = GetFilterValues(request.SearchCondition.UserId),
+                Username = GetFilterValues(request.SearchCondition.Username),
                 Page = request.SearchCondition.Page,
                 PageSize = request.SearchCondition.PageSize,
                 SortDirection = request.SearchCondition.SortDirection,
@@ -63,7 +63,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
                 Id = order.Id,
                 Status = order.Status,
                 Cost = order.Cost,
-                UserId = order.UserId,
+                Username = order.Username,
                 ProductId = order.ProductId,
                 DeliveryCompanyId = order.DeliveryCompanyId,
             };

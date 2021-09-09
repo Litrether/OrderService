@@ -8,9 +8,9 @@ namespace OrderService.API.Contracts.Outgoing
 
         public string Status { get; set; }
 
-        public decimal Cost { get; set; }
+        public double Cost { get; set; }
 
-        public string UserId { get; set; }
+        public string Username { get; set; }
 
         public int ProductId { get; set; }
 

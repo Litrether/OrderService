@@ -1,3 +1,5 @@
+using CrossCuttingLayer;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using OrderService.API.Application;
 using OrderService.Data.EF.SQL;
+using OrderService.Data.Services.Consumers;
+using System;
 
 namespace OrderService.API
 {
@@ -28,6 +32,24 @@ namespace OrderService.API
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Order service", Version = "v1" });
             });
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<OrderConsumer>();
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                {
+                    cfg.Host(new Uri(RabbitMqConsts.RabbitMqRootUri), h =>
+                    {
+                        h.Username(RabbitMqConsts.UserName);
+                        h.Password(RabbitMqConsts.Password);
+                    });
+                    cfg.ReceiveEndpoint("orderQueue", ep =>
+                    {
+                        ep.PrefetchCount = 16;
+                        ep.ConfigureConsumer<OrderConsumer>(provider);
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCuttingLayer\CrossCuttingLayer.csproj" />
     <ProjectReference Include="..\OrderService.API.Contracts\OrderService.API.Contracts.csproj" />
     <ProjectReference Include="..\OrderService.Data.Domain\OrderService.Data.Core.csproj" />
     <ProjectReference Include="..\OrderService.Data.EF.SQL\OrderService.Data.Infrastructure.csproj" />

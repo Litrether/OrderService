@@ -18,7 +18,7 @@ namespace OrderService.Data.Services
     {
         Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty);
         Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition);
-        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken);
+        Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);
     }
 
     public class DeliveryCompanyService : BaseService<DeliveryCompany>, IDeliveryCompanyService
@@ -45,14 +45,14 @@ namespace OrderService.Data.Services
             return await query.Page(searchCondition.Page, searchCondition.PageSize).ToListAsync();
         }
 
-        public async Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition)
+        public async Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition = default)
         {
             IQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
 
             return Convert.ToInt32(await query.CountAsync());
         }
 
-        private IQueryable<DeliveryCompany> BuildFindQuery(DeliveryCompanySearchCondition searchCondition)
+        private IQueryable<DeliveryCompany> BuildFindQuery(DeliveryCompanySearchCondition searchCondition = default)
         {
             var query = _collection.AsQueryable();
 

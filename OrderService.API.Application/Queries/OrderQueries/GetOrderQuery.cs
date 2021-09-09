@@ -43,7 +43,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
                 Cost = order.Cost,
                 DeliveryCompanyId = order.DeliveryCompanyId,
                 ProductId = order.ProductId,
-                UserId = order.UserId,
+                Username = order.Username,
             };
         }
 

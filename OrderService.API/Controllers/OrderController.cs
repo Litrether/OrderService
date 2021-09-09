@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OrderService.API.Application.Commands.OrderCommands;
 using OrderService.API.Application.Queries.OrderQueries;
-using OrderService.API.Contracts.IncomingOutgoing;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,19 +23,5 @@ namespace OrderService.API.Controllers
         public async Task<IActionResult> SearchOrder([FromBody] Contracts.OrderSearchCondition searchCondition,
             CancellationToken cancellationToken = default) =>
             await ExecuteQueryAsync(new SearchOrderQuery(searchCondition), cancellationToken: cancellationToken);
-
-        [HttpPost]
-        public async Task<IActionResult> AddOrder([FromBody] OrderDTO order,
-            CancellationToken cancellationToken = default) =>
-            await ExecuteCommandAsync(new AddOrderCommand(order), cancellationToken: cancellationToken);
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder(int id, [FromBody] OrderDTO order,
-            CancellationToken cancellationToken = default) =>
-            await ExecuteCommandAsync(new UpdateOrderCommand(id, order), cancellationToken: cancellationToken);
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id, CancellationToken cancellationToken = default) =>
-            await ExecuteCommandAsync(new DeleteOrderCommand(id), cancellationToken: cancellationToken);
     }
 }

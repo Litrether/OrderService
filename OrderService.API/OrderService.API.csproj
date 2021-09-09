@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.2" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCuttingLayer\CrossCuttingLayer.csproj" />
     <ProjectReference Include="..\OrderService.API.Application\OrderService.API.Application.csproj" />
   </ItemGroup>
 

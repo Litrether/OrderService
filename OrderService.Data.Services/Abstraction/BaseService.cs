@@ -12,11 +12,11 @@ namespace OrderService.Data.Services.Abstraction
 {
     public interface IBaseService<TEntity> where TEntity : KeyedEntityBase
     {
-        Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken);
-        Task<TEntity> GetAsync(int id, CancellationToken cancellationToken);
+        Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<TEntity> GetAsync(int id, CancellationToken cancellationToken = default);
         Task<TEntity> CreateAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task DeleteAsync(int id, CancellationToken cancellationToken);
+        Task DeleteAsync(int id, CancellationToken cancellationToken = default);
     }
 
     public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : KeyedEntityBase
@@ -28,10 +28,10 @@ namespace OrderService.Data.Services.Abstraction
             _collection = сollection;
         }
 
-        public async Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken) =>
+        public async Task<IReadOnlyCollection<TEntity>> GetAllAsync(CancellationToken cancellationToken = default) =>
             await _collection.Find(o => true).ToListAsync();
 
-        public async Task<TEntity> GetAsync(int id, CancellationToken cancellationToken) =>
+        public async Task<TEntity> GetAsync(int id, CancellationToken cancellationToken = default) =>
             await _collection.Find(o => o.Id == id).FirstOrDefaultAsync();
 
 
@@ -47,7 +47,7 @@ namespace OrderService.Data.Services.Abstraction
             return newEntity;
         }
 
-        public async Task DeleteAsync(int id, CancellationToken cancellationToken) =>
+        public async Task DeleteAsync(int id, CancellationToken cancellationToken = default) =>
             await _collection.DeleteOneAsync(o => o.Id == id);
     }
 }
