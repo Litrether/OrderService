@@ -45,6 +45,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
                 Cost = order.Cost,
                 Username = order.Username,
                 ProductId = order.ProductId,
+                //todo random delivery company
                 DeliveryCompanyId = order.DeliveryCompanyId,
             };
         }
