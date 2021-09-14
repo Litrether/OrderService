@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
 {
-    public class GetDeliveryCompanyQuery : IRequest<DeliveryCompanyDTO>
+    public class GetDeliveryCompanyQuery : IRequest<DeliveryCompanyIncomingDTO>
     {
         public int Id { get; set; }
 
@@ -17,7 +17,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
         }
     }
 
-    class GetDeliveryCompanyQueryHandler : IRequestHandler<GetDeliveryCompanyQuery, DeliveryCompanyDTO>
+    class GetDeliveryCompanyQueryHandler : IRequestHandler<GetDeliveryCompanyQuery, DeliveryCompanyIncomingDTO>
     {
         private readonly IDeliveryCompanyService _deliveryCompanyService;
 
@@ -26,7 +26,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
             _deliveryCompanyService = deliveryCompanyService;
         }
 
-        public async Task<DeliveryCompanyDTO> Handle(GetDeliveryCompanyQuery request, CancellationToken cancellationToken)
+        public async Task<DeliveryCompanyIncomingDTO> Handle(GetDeliveryCompanyQuery request, CancellationToken cancellationToken)
         {
             var deliveryCompany = await _deliveryCompanyService.GetAsync(request.Id, cancellationToken);
             if (deliveryCompany == null)
@@ -35,9 +35,9 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
             return MapToDeliveryCompany(deliveryCompany);
         }
 
-        private DeliveryCompanyDTO MapToDeliveryCompany(DeliveryCompany deliveryCompany)
+        private DeliveryCompanyIncomingDTO MapToDeliveryCompany(DeliveryCompany deliveryCompany)
         {
-            return new DeliveryCompanyDTO()
+            return new DeliveryCompanyIncomingDTO()
             {
                 Name = deliveryCompany.Name,
                 Rating = deliveryCompany.Rating,

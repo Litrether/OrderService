@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 {
-    public class UpdateDeliveryCompanyCommand : BaseCommand<DeliveryCompanyDTO, Response>
+    public class UpdateDeliveryCompanyCommand : BaseCommand<DeliveryCompanyIncomingDTO, Response>
     {
-        public UpdateDeliveryCompanyCommand(int id, DeliveryCompanyDTO deliveryCompany) : base(id, deliveryCompany) { }
+        public UpdateDeliveryCompanyCommand(int id, DeliveryCompanyIncomingDTO deliveryCompany) : base(id, deliveryCompany) { }
     }
 
     class UpdateDeliveryCompanyCommandHandler : IRequestHandler<UpdateDeliveryCompanyCommand, Response>
@@ -38,7 +38,7 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
             return Response.Successfull;
         }
 
-        private DeliveryCompany MapDTOToDeliveryCompany(DeliveryCompanyDTO deliveryCompanyDTO, DeliveryCompany deliveryCompany)
+        private DeliveryCompany MapDTOToDeliveryCompany(DeliveryCompanyIncomingDTO deliveryCompanyDTO, DeliveryCompany deliveryCompany)
         {
             deliveryCompany.Name = deliveryCompanyDTO.Name;
             deliveryCompany.Rating = deliveryCompanyDTO.Rating;

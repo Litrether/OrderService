@@ -1,6 +1,6 @@
 ﻿namespace OrderService.API.Contracts.IncomingOutgoing
 {
-    public class DeliveryCompanyDTO
+    public class DeliveryCompanyIncomingDTO
     {
         public string Name { get; set; }
 

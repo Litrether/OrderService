@@ -4,7 +4,6 @@ using OrderService.API.Contracts.Outgoing.Abstractions;
 
 namespace OrderService.API.Application.Abstractions
 {
-    //todo PagedSearchQuery
     public class PagedSearchQuery<TFound>
     {
         public PagedSearchQuery()

@@ -5,7 +5,7 @@ using OrderService.API.Contracts.IncomingOutgoing;
 namespace OrderService.API.Application.Validation.Abstractions
 {
     public class DeliveryCompanyValidatorBase<TCommand, TResponse> : AbstractValidator<TCommand>
-        where TCommand : BaseCommand<DeliveryCompanyDTO, TResponse>
+        where TCommand : BaseCommand<DeliveryCompanyIncomingDTO, TResponse>
     {
         public DeliveryCompanyValidatorBase()
         {

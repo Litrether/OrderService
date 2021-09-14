@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace OrderService.API.Contracts.IncomingOutgoing
+﻿namespace OrderService.API.Contracts.IncomingOutgoing
 {
-    public class OrderDTO
+    public class OrderIncomingDTO
     {
         public string Status { get; set; }
 

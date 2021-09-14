@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
-using OrderService.Data.Core.Attributes;
 using OrderService.Data.Domain;
-using OrderService.Data.EF.SQL;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

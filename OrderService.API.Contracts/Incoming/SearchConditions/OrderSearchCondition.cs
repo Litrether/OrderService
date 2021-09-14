@@ -1,5 +1,4 @@
 ﻿using OrderService.API.Contracts.Incoming.Abstractions;
-using System;
 
 namespace OrderService.API.Contracts
 {

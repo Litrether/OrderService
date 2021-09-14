@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.OrderQueries
 {
-    public class GetOrderQuery : IRequest<OrderDTO>
+    public class GetOrderQuery : IRequest<OrderIncomingDTO>
     {
         public int Id { get; set; }
 
@@ -17,7 +17,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
         }
     }
 
-    class GetOrderQueryHandler : IRequestHandler<GetOrderQuery, OrderDTO>
+    class GetOrderQueryHandler : IRequestHandler<GetOrderQuery, OrderIncomingDTO>
     {
         private readonly IOrderService _orderService;
 
@@ -26,7 +26,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
             _orderService = orderService;
         }
 
-        public async Task<OrderDTO> Handle(GetOrderQuery request, CancellationToken cancellationToken)
+        public async Task<OrderIncomingDTO> Handle(GetOrderQuery request, CancellationToken cancellationToken)
         {
             var order = await _orderService.GetAsync(request.Id, cancellationToken);
             if (order == null)
@@ -35,9 +35,9 @@ namespace OrderService.API.Application.Queries.OrderQueries
             return MapToOrder(order);
         }
 
-        private OrderDTO MapToOrder(Order order)
+        private OrderIncomingDTO MapToOrder(Order order)
         {
-            return new OrderDTO()
+            return new OrderIncomingDTO()
             {
                 Status = order.Status,
                 Cost = order.Cost,

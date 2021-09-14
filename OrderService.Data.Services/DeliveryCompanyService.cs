@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using OrderService.API.Contracts.Incoming.SearchConditions;
 using OrderService.Data.Domain.Models;
@@ -25,7 +24,7 @@ namespace OrderService.Data.Services
     {
         private readonly IMongoCollection<DeliveryCompany> _collection;
 
-        public DeliveryCompanyService(IDatabaseContext context) 
+        public DeliveryCompanyService(IDatabaseContext context)
             : base(context.GetCollection<DeliveryCompany>(nameof(DeliveryCompany)))
         {
             _collection = context.GetCollection<DeliveryCompany>(nameof(DeliveryCompany));
@@ -36,23 +35,23 @@ namespace OrderService.Data.Services
 
         public async Task<IReadOnlyCollection<DeliveryCompany>> FindAsync(DeliveryCompanySearchCondition searchCondition, string sortProperty)
         {
-            IQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
+            IMongoQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
 
             query = searchCondition.SortDirection == "asc"
                 ? query.OrderBy(sortProperty)
                 : query.OrderByDescending(sortProperty);
 
-            return await query.Page(searchCondition.Page, searchCondition.PageSize).ToListAsync();
+            return await query.Page(searchCondition.PageSize, searchCondition.Page).ToListAsync();
         }
 
         public async Task<int> CountAsync(DeliveryCompanySearchCondition searchCondition = default)
         {
-            IQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
+            IMongoQueryable<DeliveryCompany> query = BuildFindQuery(searchCondition);
 
             return Convert.ToInt32(await query.CountAsync());
         }
 
-        private IQueryable<DeliveryCompany> BuildFindQuery(DeliveryCompanySearchCondition searchCondition = default)
+        private IMongoQueryable<DeliveryCompany> BuildFindQuery(DeliveryCompanySearchCondition searchCondition = default)
         {
             var query = _collection.AsQueryable();
 

@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
 {
-    public class SearchDeliveryCompanyQuery : PagedSearchQuery<FoundDeliveryCompanyDTO, DeliveryCompanySearchCondition>
+    public class SearchDeliveryCompanyQuery : PagedSearchQuery<DeliveryCompanyOutgoingDTO, DeliveryCompanySearchCondition>
     {
         public SearchDeliveryCompanyQuery(DeliveryCompanySearchCondition searchCondition) : base(searchCondition)
         { }
     }
 
-    class SearchDeliveryCompanyQueryHandler : IRequestHandler<SearchDeliveryCompanyQuery, PagedResponse<FoundDeliveryCompanyDTO>>
+    class SearchDeliveryCompanyQueryHandler : IRequestHandler<SearchDeliveryCompanyQuery, PagedResponse<DeliveryCompanyOutgoingDTO>>
     {
         private readonly IDeliveryCompanyService _deliveryCompanyService;
 
@@ -28,7 +28,7 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
             _deliveryCompanyService = deliveryCompanyService;
         }
 
-        public async Task<PagedResponse<FoundDeliveryCompanyDTO>> Handle(SearchDeliveryCompanyQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResponse<DeliveryCompanyOutgoingDTO>> Handle(SearchDeliveryCompanyQuery request, CancellationToken cancellationToken)
         {
             DeliveryCompanySearchCondition searchCondition = new DeliveryCompanySearchCondition()
             {
@@ -43,19 +43,19 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
             var sortProperty = GetSortProperty(searchCondition.SortProperty);
             IReadOnlyCollection<DeliveryCompany> foundDeliveryCompany = await _deliveryCompanyService.FindAsync(
                 searchCondition, sortProperty);
-            FoundDeliveryCompanyDTO[] mappedDeliveryCompany = foundDeliveryCompany.Select(MapToFoundDeliveryCompanyDTO).ToArray();
+            DeliveryCompanyOutgoingDTO[] mappedDeliveryCompany = foundDeliveryCompany.Select(MapToFoundDeliveryCompanyDTO).ToArray();
             var totalCount = await _deliveryCompanyService.CountAsync(searchCondition);
 
-            return new PagedResponse<FoundDeliveryCompanyDTO>
+            return new PagedResponse<DeliveryCompanyOutgoingDTO>
             {
                 Items = mappedDeliveryCompany,
                 TotalCount = totalCount,
             };
         }
 
-        private FoundDeliveryCompanyDTO MapToFoundDeliveryCompanyDTO(DeliveryCompany deliveryCompany)
+        private DeliveryCompanyOutgoingDTO MapToFoundDeliveryCompanyDTO(DeliveryCompany deliveryCompany)
         {
-            return new FoundDeliveryCompanyDTO
+            return new DeliveryCompanyOutgoingDTO
             {
                 Id = deliveryCompany.Id,
                 Name = deliveryCompany.Name,
@@ -75,10 +75,10 @@ namespace OrderService.API.Application.Queries.DeliveryCompanyQueries
             if (string.IsNullOrWhiteSpace(propertyName))
                 return nameof(DeliveryCompany.Id);
 
-            if (propertyName.Equals("deliveryCompanyName", StringComparison.InvariantCultureIgnoreCase))
+            if (propertyName.Equals("Name", StringComparison.InvariantCultureIgnoreCase))
                 return nameof(DeliveryCompany.Name);
 
-            if (propertyName.Equals("deliveryCompanyRating", StringComparison.InvariantCultureIgnoreCase))
+            if (propertyName.Equals("Rating", StringComparison.InvariantCultureIgnoreCase))
                 return nameof(DeliveryCompany.Rating);
 
             return propertyName;

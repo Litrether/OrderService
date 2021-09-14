@@ -28,12 +28,12 @@ namespace OrderService.API.Controllers
             await ExecuteQueryAsync(new SearchDeliveryCompanyQuery(searchCondition), cancellationToken: cancellationToken);
 
         [HttpPost]
-        public async Task<IActionResult> AddDeliveryCompany([FromBody] DeliveryCompanyDTO deliveryCompany,
+        public async Task<IActionResult> AddDeliveryCompany([FromBody] DeliveryCompanyIncomingDTO deliveryCompany,
             CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new AddDeliveryCompanyCommand(deliveryCompany), cancellationToken: cancellationToken);
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDeliveryCompany(int id, [FromBody] DeliveryCompanyDTO deliveryCompany,
+        public async Task<IActionResult> UpdateDeliveryCompany(int id, [FromBody] DeliveryCompanyIncomingDTO deliveryCompany,
             CancellationToken cancellationToken = default) =>
             await ExecuteCommandAsync(new UpdateDeliveryCompanyCommand(id, deliveryCompany), cancellationToken: cancellationToken);
 

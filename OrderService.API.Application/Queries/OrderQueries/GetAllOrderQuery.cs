@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.OrderQueries
 {
-    public class GetAllOrderQuery : IRequest<IReadOnlyCollection<FoundOrderDTO>>
+    public class GetAllOrderQuery : IRequest<IReadOnlyCollection<OrderOutgoingDTO>>
     {
         public GetAllOrderQuery()
         {
         }
     }
 
-    class GetAllOrderQueryHandler : IRequestHandler<GetAllOrderQuery, IReadOnlyCollection<FoundOrderDTO>>
+    class GetAllOrderQueryHandler : IRequestHandler<GetAllOrderQuery, IReadOnlyCollection<OrderOutgoingDTO>>
     {
         private readonly IOrderService _orderService;
         private readonly IDeliveryCompanyService _deliveryCompanyService;
@@ -28,17 +28,17 @@ namespace OrderService.API.Application.Queries.OrderQueries
             _deliveryCompanyService = deliveryCompanyService;
         }
 
-        public async Task<IReadOnlyCollection<FoundOrderDTO>> Handle(GetAllOrderQuery request,
+        public async Task<IReadOnlyCollection<OrderOutgoingDTO>> Handle(GetAllOrderQuery request,
             CancellationToken cancellationToken)
         {
-            var orders = await _orderService.GetAllAsync(cancellationToken);
+            var orders = await _orderService.GetAllAsync();
 
             return orders.Select(MapToFoundOrderDTO).ToArray();
         }
 
-        private FoundOrderDTO MapToFoundOrderDTO(Order order)
+        private OrderOutgoingDTO MapToFoundOrderDTO(Order order)
         {
-            return new FoundOrderDTO
+            return new OrderOutgoingDTO
             {
                 Id = order.Id,
                 Status = order.Status,

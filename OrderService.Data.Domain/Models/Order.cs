@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OrderService.Data.Domain.Models
+﻿namespace OrderService.Data.Domain.Models
 {
     public class Order : KeyedEntityBase
     {

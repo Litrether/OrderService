@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver.Linq;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -6,10 +7,10 @@ namespace OrderService.Data.Services.Extensions
 {
     public static class LinqExtensions
     {
-        public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string propertyName) =>
+        public static IMongoQueryable<T> OrderBy<T>(this IMongoQueryable<T> source, string propertyName) =>
             source.OrderBy(ToLambda<T>(propertyName));
 
-        public static IOrderedQueryable<T> OrderByDescending<T>(this IQueryable<T> source, string propertyName) =>
+        public static IMongoQueryable<T> OrderByDescending<T>(this IMongoQueryable<T> source, string propertyName) =>
             source.OrderByDescending(ToLambda<T>(propertyName));
 
         public static Expression<Func<T, object>> ToLambda<T>(string propertyName)
@@ -21,7 +22,7 @@ namespace OrderService.Data.Services.Extensions
             return Expression.Lambda<Func<T, object>>(propAsObject, parameter);
         }
 
-        public static IQueryable<T> Page<T>(this IQueryable<T> source, int pageSize, int page) =>
-            source.Skip(page * pageSize).Take(pageSize);
+        public static IMongoQueryable<T> Page<T>(this IMongoQueryable<T> source, int pageSize, int page) =>
+            source.Skip(--page * pageSize).Take(pageSize);
     }
 }

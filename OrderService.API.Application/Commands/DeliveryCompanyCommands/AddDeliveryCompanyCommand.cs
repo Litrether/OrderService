@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
 {
-    public class AddDeliveryCompanyCommand : BaseCommand<DeliveryCompanyDTO, int>
+    public class AddDeliveryCompanyCommand : BaseCommand<DeliveryCompanyIncomingDTO, int>
     {
-        public AddDeliveryCompanyCommand(DeliveryCompanyDTO deliveryCompany) : base(deliveryCompany) { }
+        public AddDeliveryCompanyCommand(DeliveryCompanyIncomingDTO deliveryCompany) : base(deliveryCompany) { }
     }
 
     class AddDeliveryCompanyCommandHandler : IRequestHandler<AddDeliveryCompanyCommand, int>
@@ -29,7 +29,7 @@ namespace OrderService.API.Application.Commands.DeliveryCompanyCommands
             return insertDeliveryCompany.Id;
         }
 
-        private DeliveryCompany MapToDeliveryCompany(DeliveryCompanyDTO deliveryCompany)
+        private DeliveryCompany MapToDeliveryCompany(DeliveryCompanyIncomingDTO deliveryCompany)
         {
             return new DeliveryCompany
             {

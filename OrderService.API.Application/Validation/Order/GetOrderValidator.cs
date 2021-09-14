@@ -21,9 +21,7 @@ namespace OrderService.API.Application.Validation.OrderCommands
         {
             RuleFor(query => query.Id)
                 .NotNull()
-                .WithMessage(query => string.Format(Resources.Resources.ValueRequired, nameof(query.Id)));
-
-            RuleFor(query => query.Id)
+                .WithMessage(query => string.Format(Resources.Resources.ValueRequired, nameof(query.Id)))
                 .MustAsync(Exist)
                 .WithMessage(query => string.Format(Resources.Resources.OrderNotFound, query.Id));
         }

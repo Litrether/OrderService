@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace OrderService.API.Contracts.Outgoing
+﻿namespace OrderService.API.Contracts.Outgoing
 {
-    public class FoundOrderDTO
+    public class OrderOutgoingDTO
     {
         public int Id { get; set; }
 

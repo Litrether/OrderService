@@ -1,8 +1,7 @@
 ﻿using CrossCuttingLayer;
-using CrossCuttingLayer.Models;
 using MassTransit;
 using OrderService.Data.Domain.Models;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,6 +32,9 @@ namespace OrderService.Data.Services.Consumers
                 case CrossFunction.DELETE:
                     await DeleteOrderAsync(message.Id.Value);
                     break;
+                case CrossFunction.PUT:
+                    await UpdateOrderStatusAsync(message.Id.Value, message.Status);
+                    break;
             }
         }
 
@@ -45,7 +47,17 @@ namespace OrderService.Data.Services.Consumers
                 await _orderService.DeleteAsync(orderId);
         }
 
-        private Order MapToOrder(OrderMessage order) =>  
+        private async Task UpdateOrderStatusAsync(int id, string newStatus)
+        {
+            Order order = await _orderService.GetAsync(id);
+            if (order == null)
+                return;
+
+            order.Status = newStatus;
+            await _orderService.UpdateAsync(order);
+        }
+
+        private Order MapToOrder(OrderMessage order) =>
             new Order
             {
                 Status = "Processed",

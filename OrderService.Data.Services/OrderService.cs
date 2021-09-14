@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using OrderService.API.Contracts;
 using OrderService.Data.Domain.Models;
@@ -35,7 +34,7 @@ namespace OrderService.Data.Services
 
         public async Task<IReadOnlyCollection<Order>> FindAsync(OrderSearchCondition searchCondition, string sortProperty)
         {
-            IQueryable<Order> query = BuildFindQuery(searchCondition);
+            IMongoQueryable<Order> query = BuildFindQuery(searchCondition);
 
             query = searchCondition.SortDirection == "asc"
                 ? query.OrderBy(sortProperty)
@@ -46,14 +45,12 @@ namespace OrderService.Data.Services
 
         public async Task<int> CountAsync(OrderSearchCondition searchCondition)
         {
-            IQueryable<Order> query = BuildFindQuery(searchCondition);
+            IMongoQueryable<Order> query = BuildFindQuery(searchCondition);
 
-            var count = await query.CountAsync();
-
-            return count % 10 == 0 ? count / 10 : count / 10 + 1;
+            return await query.CountAsync();
         }
 
-        private IQueryable<Order> BuildFindQuery(OrderSearchCondition searchCondition)
+        private IMongoQueryable<Order> BuildFindQuery(OrderSearchCondition searchCondition)
         {
             var query = _collection.AsQueryable();
 

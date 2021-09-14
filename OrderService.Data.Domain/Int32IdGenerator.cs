@@ -6,7 +6,7 @@ namespace OrderService.Data.Core
 {
     public class Int32IdGenerator<T> : IIdGenerator where T : class
     {
-        private string _idCollectionName;
+        private readonly string _idCollectionName;
 
         public Int32IdGenerator()
         {
@@ -39,9 +39,7 @@ namespace OrderService.Data.Core
             return value.AsInt64;
         }
 
-        public bool IsEmpty(object id)
-        {
-            return ((int)id) == 0;
-        }
+        public bool IsEmpty(object id) =>
+            (int)id == 0;
     }
 }

@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace OrderService.API.Application.Queries.OrderQueries
 {
-    public class SearchOrderQuery : PagedSearchQuery<FoundOrderDTO, OrderSearchCondition>
+    public class SearchOrderQuery : PagedSearchQuery<OrderOutgoingDTO, OrderSearchCondition>
     {
         public SearchOrderQuery(OrderSearchCondition searchCondition) : base(searchCondition)
         { }
     }
 
-    class SearchOrderQueryHandler : IRequestHandler<SearchOrderQuery, PagedResponse<FoundOrderDTO>>
+    class SearchOrderQueryHandler : IRequestHandler<SearchOrderQuery, PagedResponse<OrderOutgoingDTO>>
     {
         private readonly IOrderService _orderService;
 
@@ -28,7 +28,7 @@ namespace OrderService.API.Application.Queries.OrderQueries
             _orderService = orderService;
         }
 
-        public async Task<PagedResponse<FoundOrderDTO>> Handle(SearchOrderQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResponse<OrderOutgoingDTO>> Handle(SearchOrderQuery request, CancellationToken cancellationToken)
         {
             OrderSearchCondition searchCondition = new OrderSearchCondition()
             {
@@ -46,19 +46,19 @@ namespace OrderService.API.Application.Queries.OrderQueries
             var sortProperty = GetSortProperty(searchCondition.SortProperty);
             IReadOnlyCollection<Order> foundDeliveryCompany = await _orderService.FindAsync(
                 searchCondition, sortProperty);
-            FoundOrderDTO[] mappedDeliveryCompany = foundDeliveryCompany.Select(MapToFoundOrderDTO).ToArray();
+            OrderOutgoingDTO[] mappedDeliveryCompany = foundDeliveryCompany.Select(MapToFoundOrderDTO).ToArray();
             var totalCount = await _orderService.CountAsync(searchCondition);
 
-            return new PagedResponse<FoundOrderDTO>
+            return new PagedResponse<OrderOutgoingDTO>
             {
                 Items = mappedDeliveryCompany,
                 TotalCount = totalCount,
             };
         }
 
-        private FoundOrderDTO MapToFoundOrderDTO(Order order)
+        private OrderOutgoingDTO MapToFoundOrderDTO(Order order)
         {
-            return new FoundOrderDTO
+            return new OrderOutgoingDTO
             {
                 Id = order.Id,
                 Status = order.Status,
@@ -79,13 +79,22 @@ namespace OrderService.API.Application.Queries.OrderQueries
         protected string GetSortProperty(string propertyName)
         {
             if (string.IsNullOrWhiteSpace(propertyName))
-                return nameof(DeliveryCompany.Id);
+                return nameof(Order.Id);
 
-            if (propertyName.Equals("deliveryCompanyName", StringComparison.InvariantCultureIgnoreCase))
-                return nameof(DeliveryCompany.Name);
+            if (propertyName.Equals("Status", StringComparison.InvariantCultureIgnoreCase))
+                return nameof(Order.Status);
 
-            if (propertyName.Equals("deliveryCompanyRating", StringComparison.InvariantCultureIgnoreCase))
-                return nameof(DeliveryCompany.Rating);
+            if (propertyName.Equals("Username", StringComparison.InvariantCultureIgnoreCase))
+                return nameof(Order.Username);
+
+            if (propertyName.Equals("Cost", StringComparison.InvariantCultureIgnoreCase))
+                return nameof(Order.Cost);
+
+            if (propertyName.Equals("ProductId", StringComparison.InvariantCultureIgnoreCase))
+                return nameof(Order.ProductId);
+
+            if (propertyName.Equals("DeliveryCompanyId", StringComparison.InvariantCultureIgnoreCase))
+                return nameof(Order.DeliveryCompanyId);
 
             return propertyName;
         }

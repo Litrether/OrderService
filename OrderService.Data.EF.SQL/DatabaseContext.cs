@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 
 namespace OrderService.Data.EF.SQL
 {
@@ -12,10 +13,11 @@ namespace OrderService.Data.EF.SQL
         private readonly IMongoDatabase _database;
         private readonly IMongoClient _client;
 
-        public DatabaseContext()
+        public DatabaseContext(IConfiguration configuration)
         {
-            _client = new MongoClient("mongodb+srv://litrether:12345Qwert@cluster0.zece3.mongodb.net/myFirstDatabase");
-            _database = _client.GetDatabase("myFirstDatabase");
+            var connectionData = configuration.GetSection("ConnectionMongoDb");
+            _client = new MongoClient(connectionData.GetSection("OrderServiceDbContext").Value);
+            _database = _client.GetDatabase(connectionData.GetSection("DatabaseName").Value);
         }
 
         public IMongoCollection<T> GetCollection<T>(string name) =>

@@ -22,8 +22,7 @@ namespace OrderService.API.Application
         private static void AddValidators(this IServiceCollection services)
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            services.Scan(
-                x =>
+            services.Scan(x =>
                 {
                     var entryAssembly = Assembly.GetEntryAssembly();
                     IEnumerable<Assembly> referencedAssemblies = entryAssembly.GetReferencedAssemblies().Select(Assembly.Load);
